@@ -1,0 +1,33 @@
+h1{
+	background-color : rgba(208,23,41, 0.6);
+	padding-left: 300px; 
+	margin : auto; 
+	color : white; 
+	width : 30%;
+}
+body{
+	background-image :url(steria1.jpg)
+}
+
+.greytext{
+	margin: auto;
+	margin-top: 100px; 
+	font-family: Verdana; 
+	color: rgb(30,30,30);
+	width:30%; 
+	background-color : white; 
+	opacity:0.9; 
+}
+input{
+	color:rgb(150,150,150);
+	
+}
+#submit{
+	margin-left: 80%; 
+}
+#flottante {
+	float:right;
+}
+#pseudo{
+	color: rgb(150,150,150); 
+}
