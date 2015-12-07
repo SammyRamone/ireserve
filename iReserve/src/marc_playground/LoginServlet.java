@@ -1,3 +1,4 @@
+package marc_playground;
 
 
 import java.io.IOException;
@@ -8,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AddRoomServlet
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/AddRoomServlet")
-public class AddRoomServlet extends HttpServlet {
+@WebServlet("/marc_playground/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddRoomServlet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,12 +36,18 @@ public class AddRoomServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
- 
-		String name= request.getParameter("name");
-		String size= request.getParameter("size");
+		String login= request.getParameter("login");
+		String pass= request.getParameter("pass");
 		
-		System.out.println(name + " : " + size);
- 
+		System.out.println(login + " : " + pass);
+		
+		if(login.equals("Hans") && pass.equals("Wurst")){
+			 response.sendRedirect("main.jsp");
+		}else{
+			 response.sendRedirect("logginError.jsp");
+		}
+		
+		
 	}
 
 }
