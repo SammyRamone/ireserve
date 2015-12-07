@@ -1,17 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" href="iRsrve.css"/>
+	<title>iReserve</title>
 </head>
 <body>
-	<p> Log in didn't work. Please try again </p>
-	<form action="LoginServlet" method="post">
-		Name: <input type="text" size="5" name="login"/>
-		Pass: <input type="password" size="5" name="pass"/>
-    	<input type="submit" value="Login" name="login">
-	</form>
+	<p><img src="steria-sopra.jpg" id="flottante" alt="imageflottante" /></p>
+	
+
+	<header>
+		<h1>iReserve</h1>
+	</header>
+	This didn't work. Try again!
+	<section class="greytext">
+		<form action="LoginServlet" method="post">
+			<div><label>entrer votre pseudonyme   : </label><input type="text" value="login" name="login" id="login" autofocus/></div>
+			<div><label>entrez votre mot de passe :</label><input type="password" value="password" name="pass"/></div>
+			<div><input type="submit" value="submit" id="submit"/></div>
+		</form>
+	</section>
+
 </body>
-</html>
