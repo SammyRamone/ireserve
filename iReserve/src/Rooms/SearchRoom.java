@@ -27,7 +27,7 @@ public class SearchRoom extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher( "/Site&appliWeb/SearchRoom.jsp" ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/SearchRoom.jsp" ).forward( request, response );
 	}
 
 	/**
@@ -43,8 +43,6 @@ public class SearchRoom extends HttpServlet {
 		String rbVisio = request.getParameter("particularite-viso");
 		String rbDigi = request.getParameter("particularite-digilab");
 		String rbTab = request.getParameter("particularite-tableau");
-		String rb = null;
-		rb.equals("");
 		System.out.println(rbTab);
 		doGet(request, response);
 	}
