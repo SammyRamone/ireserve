@@ -40,7 +40,7 @@ public class AddRoomServlet extends HttpServlet {
 		String name= request.getParameter("name");
 		String size= request.getParameter("size");
 		
-		System.out.println(name + " : " + size);
+		
  
 	}
 

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class SQLHelper {
 
@@ -29,7 +30,7 @@ public class SQLHelper {
 	    _connexion = null;	    
 	}
 	
-	public String getPassword(String login){
+	public ResultSet doQuerry(String querry){
 		Statement statement = null;
 	    ResultSet resultat = null;
 	    String passFromDB = null;
@@ -37,14 +38,15 @@ public class SQLHelper {
 	    try {
 			_connexion = DriverManager.getConnection( _url, _utilisateur, _motDePasse );
 			statement = _connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * FROM Persons WHERE username='" + login + "';" );
-			resultat.next();
-			passFromDB = resultat.getString("password");
+			resultat = statement.executeQuery( querry);			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    return passFromDB;
+	    return resultat;
 	    
+		
 	}
+	
+	
 }
