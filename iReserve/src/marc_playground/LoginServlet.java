@@ -2,6 +2,12 @@ package marc_playground;
 
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,13 +41,21 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	    
 		String login= request.getParameter("login");
 		String pass= request.getParameter("pass");
-		
-		System.out.println(login + " : " + pass);
-		
-		if(login.equals("Hans") && pass.equals("Wurst")){
+
+		try {
+			Class.forName( "com.mysql.jdbc.Driver" );
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	   String passFromDB = SQLHelper.getInstance().getPassword(login);
+	    
+
+		if(passFromDB != null && passFromDB.equals(pass)){
 			 response.sendRedirect("main.jsp");
 		}else{
 			 response.sendRedirect("logginError.jsp");
