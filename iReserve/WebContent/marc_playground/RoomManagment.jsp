@@ -10,7 +10,7 @@
 	<form action="AddRoom.jsp">
     	<input type="submit" value="Add Rooms">
 	</form>
-	<form action="RemoveRoom.jsp">
+	<form action="RemoveRoomServlet">
     	<input type="submit" value="Remove Rooms">
 	</form>
 	<form action="ChangeRoom.jsp">
