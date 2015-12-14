@@ -14,7 +14,6 @@
 			<input type="radio" value=" particularité" name="particularite-visio"/> visio<br>
 			<input type="radio" value=" particularité" name="particularite-digilab"/> digilab<br>
 			<input type="radio" value=" particularité" name="particularite-tableau"/> tableau<br>
-			<input type="button" value="rechercher" name="rechercher"/>
 			
 		</form>
 		<article><p id="p"></p></article>
