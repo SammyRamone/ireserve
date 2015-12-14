@@ -7,27 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border="1">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Size</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Salle 1</td>
-        <td>28</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Salle 2</td>
-        <td>29</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>Salle 3</td>
-        <td>18</td>
-    </tr>
-</table>
+
 </body>
 </html>

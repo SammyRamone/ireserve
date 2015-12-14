@@ -8,9 +8,11 @@
 </head>
 <body>
 	<form action="AddRoomServlet" method="post">
-        Name: <input type="text" size="5" name="name"/>
+        Room Number: <input type="text" size="5" name="number"/>
         &nbsp;&nbsp;
         Size: <input type="text" size="5" name="size"/>
+        &nbsp;&nbsp;
+        Site: <input type="text" size="5" name="site"/>
         &nbsp;&nbsp;
         <input type="submit" value="Add Room" />
     </form>
