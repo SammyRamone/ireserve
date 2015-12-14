@@ -36,19 +36,32 @@ public class ListRoomsServlet extends HttpServlet {
 
 		String querry = "SELECT * FROM Rooms;";
 		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
-		List list = new ArrayList();
+		String[] names = new String[3];
+		names[0] = "Number";
+		names[1] = "Capacity";
+		names[2] = "Site";
 		try {
-			while (resultat.next()) {
-				String field;
-				field = resultat.getString("num_room");
-				list.add(field);
+			int rows = 0;
+			while(resultat.next()){
+				rows++;
 			}
+			resultat.beforeFirst();
+			System.out.print("rows: " + rows );
+			String[][] data = new String[rows][3];
+			for (int i = 0; resultat.next(); i++) {				
+				String[] row = new String[3];
+				row[0] = resultat.getString("num_room");
+				row[1] = resultat.getString("capacity");
+				row[2] = resultat.getString("id_site");
+				data[i] = row;
+			}
+			response.getWriter().append(HTMLHelper.makeTable(names, data, rows));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		response.getWriter().append(list.toString());
+		
+		
 	}
 
 	/**
@@ -60,5 +73,5 @@ public class ListRoomsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	
 }

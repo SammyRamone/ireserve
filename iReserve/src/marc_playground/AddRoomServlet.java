@@ -37,10 +37,13 @@ public class AddRoomServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
  
-		String name= request.getParameter("name");
+		String number= request.getParameter("number");
 		String size= request.getParameter("size");
+		String site = request.getParameter("site");
 		
-		
+		String querry = "INSERT INTO Rooms (id_site, num_room, capacity) VALUES (" + site + "," + number + "," + size + ");";
+		SQLHelper.getInstance().execute(querry);
+		response.getWriter().append("Room added");
  
 	}
 

@@ -38,15 +38,30 @@ public class SQLHelper {
 	    try {
 			_connexion = DriverManager.getConnection( _url, _utilisateur, _motDePasse );
 			statement = _connexion.createStatement();
-			resultat = statement.executeQuery( querry);			
+			resultat = statement.executeQuery( querry);	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    return resultat;
-	    
-		
 	}
+	
+	public boolean execute(String command){
+		Statement statement = null;
+	    Boolean resultat = null;
+	    String passFromDB = null;
+	    
+	    try {
+			_connexion = DriverManager.getConnection( _url, _utilisateur, _motDePasse );
+			statement = _connexion.createStatement();
+			resultat = statement.execute(command);	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    return resultat;
+	}
+	
 	
 	
 }
