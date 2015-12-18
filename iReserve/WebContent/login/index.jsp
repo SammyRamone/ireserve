@@ -21,7 +21,7 @@
 		</form>
 	</section>
 	<section class="greytext">
-		<form action="RegisterServlet" method="get">
+		<form action="../users/RegisterServlet" method="get">
 			<div><label>No account? Register here:</label><input type="submit" value="Register" id="submit"/></div>
 		</form>
 	</section>
