@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import marc_playground.SQLHelper;
+import helper.SQLHelper;
 
 /**
  * Servlet implementation class SearchRoom
  */
-@WebServlet("/SearchRoom")
+@WebServlet("/rooms/SearchRoom")
 public class SearchRoom extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

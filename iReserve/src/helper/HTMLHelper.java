@@ -1,4 +1,4 @@
-package marc_playground;
+package helper;
 
 public class HTMLHelper {
 

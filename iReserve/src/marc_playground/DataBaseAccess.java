@@ -3,6 +3,9 @@ package marc_playground;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import helper.Pair;
+import helper.SQLHelper;
+
 public class DataBaseAccess {
 	public static DataBaseAccess instance; 
 	

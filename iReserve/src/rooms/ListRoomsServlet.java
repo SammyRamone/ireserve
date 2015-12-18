@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import marc_playground.HTMLHelper;
-import marc_playground.SQLHelper;
+import helper.HTMLHelper;
+import helper.SQLHelper;
 
 /**
  * Servlet implementation class ListRoomsServlet

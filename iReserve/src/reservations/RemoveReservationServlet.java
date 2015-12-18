@@ -1,4 +1,4 @@
-package marc_playground;
+package reservations;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.SQLHelper;
+
 /**
  * Servlet implementation class RemoveReservationServlet
  */
-@WebServlet("/marc_playground/RemoveReservationServlet")
+@WebServlet("/reservations/RemoveReservationServlet")
 public class RemoveReservationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
