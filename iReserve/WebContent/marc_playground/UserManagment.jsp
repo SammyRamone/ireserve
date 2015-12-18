@@ -7,7 +7,7 @@
 <title>iReserve - User Management</title>
 </head>
 <body>
-	<form action="AddUser.jsp">
+	<form action="RegisterServlet">
     	<input type="submit" value="Add User">
 	</form>
 	<form action="ManageUserServlet">

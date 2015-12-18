@@ -16,6 +16,9 @@
 	<form action="UserManagment.jsp">
     	<input type="submit" value="Manage Users">
 	</form>
+	<form action="ReservationManagmentServlet">
+    	<input type="submit" value="Manage Reservations">
+	</form>
 	
 </body>
 </html>

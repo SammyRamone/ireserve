@@ -21,7 +21,7 @@ public class DataBaseAccess {
 		
 		public String[] loginQuery(String login){
 			String query = "SELECT * FROM Persons WHERE username='" + login + "';";
-			Pair<String,boolean> result = new Pair<String,boolean>;
+			/*Pair<String,boolean> result = new Pair<String,boolean>;
 			String passFromDB ="";
 			ResultSet resultat = SQLHelper.getInstance().doQuerry(query);
 			try {
@@ -32,7 +32,8 @@ public class DataBaseAccess {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return result;
+			return result;*/
+			return null;
 		}
 	
 	
