@@ -1,4 +1,3 @@
-package marc_playground;
 
 
 import java.io.IOException;
@@ -9,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AddRoomServlet
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/marc_playground/AddRoomServlet")
-public class AddRoomServlet extends HttpServlet {
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddRoomServlet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,15 +35,16 @@ public class AddRoomServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
- 
-		String number= request.getParameter("number");
-		String size= request.getParameter("size");
-		String site = request.getParameter("site");
+		String login= request.getParameter("login");
+		String pass= request.getParameter("pass");
 		
-		String querry = "INSERT INTO Rooms (id_site, num_room, capacity) VALUES (" + site + "," + number + "," + size + ");";
-		SQLHelper.getInstance().execute(querry);
-		response.getWriter().append("Room added");
- 
+		System.out.println(login + " : " + pass);
+		
+		//todo test if password is good
+		// go to main page
+		// else go back with a error message
+		
+		
 	}
 
 }
