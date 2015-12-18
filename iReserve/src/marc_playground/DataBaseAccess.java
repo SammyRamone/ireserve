@@ -19,20 +19,26 @@ public class DataBaseAccess {
 		
 		
 		
+
 		public Pair<String, Boolean> loginQuery(String login){
 			String query = "SELECT * FROM Persons WHERE username='" + login + "';";
 			Pair<String, Boolean> result = new Pair<String , Boolean>("",false);
+
 			String passFromDB ="";
 			ResultSet resultat = SQLHelper.getInstance().doQuerry(query);
 			try {
 				resultat.next();
+
 				result.modifyFirst( resultat.getString("password"));
 				result.modifySecond(  resultat.getBoolean("isAdmin"));
+				 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 			return result;
+
 		}
 	
 	
