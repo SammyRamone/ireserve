@@ -67,7 +67,19 @@ public class LoginServlet extends HttpServlet {
 		}
 
 		if (passFromDB != null && passFromDB.equals(pass)) {
-			response.sendRedirect("main.jsp");
+			boolean admin = false;
+			try {
+				admin = resultat.getBoolean("isAdmin");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(admin){
+				response.sendRedirect("mainAdmin.jsp");
+			}else{
+				response.sendRedirect("main.jsp");
+			}
+			
 		} else {
 			response.sendRedirect("logginError.jsp");
 		}

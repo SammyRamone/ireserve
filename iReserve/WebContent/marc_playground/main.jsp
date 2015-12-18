@@ -10,8 +10,5 @@
 <form action="ListRoomsServlet">
     	<input type="submit" value="List Rooms">
 	</form>
-	<form action="RoomManagment.jsp">
-    	<input type="submit" value="Manage Rooms">
-	</form>
 </body>
 </html>
