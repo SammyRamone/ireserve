@@ -1,4 +1,4 @@
-package marc_playground;
+package login;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,10 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import marc_playground.SQLHelper;
+
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/marc_playground/LoginServlet")
+@WebServlet("/login/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

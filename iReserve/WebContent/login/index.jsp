@@ -7,7 +7,7 @@
 	<title>iReserve</title>
 </head>
 <body>
-	<p><img src="steria-sopra.jpg" id="flottante" alt="imageflottante" /></p>
+	<p><img src="../images/steria-sopra.jpg" id="flottante" alt="imageflottante" /></p>
 	
 
 	<header>
