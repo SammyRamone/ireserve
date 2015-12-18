@@ -1,4 +1,4 @@
-package marc_playground;
+package rooms;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -12,10 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import marc_playground.HTMLHelper;
+import marc_playground.SQLHelper;
+
 /**
  * Servlet implementation class ListRoomsServlet
  */
-@WebServlet("/marc_playground/ListRoomsServlet")
+@WebServlet("/rooms/ListRoomsServlet")
 public class ListRoomsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

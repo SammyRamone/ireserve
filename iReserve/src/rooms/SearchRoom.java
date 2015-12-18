@@ -1,4 +1,4 @@
-package Rooms;
+package rooms;
 
 import java.io.IOException;
 import java.sql.ResultSet;
