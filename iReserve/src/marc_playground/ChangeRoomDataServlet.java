@@ -40,7 +40,7 @@ public class ChangeRoomDataServlet extends HttpServlet {
 		String site = request.getParameter("sites");
 		String siteID = SQLHelper.getInstance().getSiteID(site);
 		
-		String update= "UPDATE Rooms SET (id_site=" + site + ", num_room=" + number + ", capacity=" + capacity + "WHERE id_room=\"" + id + "\";";
+		String update= "UPDATE Rooms SET id_site=" + siteID + ", num_room=" + number + ", capacity=" + capacity + " WHERE id_room=" + id + ";";
 		SQLHelper.getInstance().execute(update);
 		response.getWriter().append("Room Changed");
 	}

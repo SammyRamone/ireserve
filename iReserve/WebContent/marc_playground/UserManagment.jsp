@@ -4,16 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>iReserve - User Management</title>
 </head>
 <body>
-<form action="ListRoomsServlet">
-    	<input type="submit" value="List Rooms">
+	<form action="AddUser.jsp">
+    	<input type="submit" value="Add User">
 	</form>
-	<form action="RoomManagment.jsp">
-    	<input type="submit" value="Manage Rooms">
-	</form>
-	<form action="UserManagment.jsp">
+	<form action="ManageUserServlet">
     	<input type="submit" value="Manage Users">
 	</form>
 	
