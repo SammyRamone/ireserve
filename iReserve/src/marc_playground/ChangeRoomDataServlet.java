@@ -1,6 +1,5 @@
 package marc_playground;
 
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AddRoomServlet
+ * Servlet implementation class ChangeRoomDataServlet
  */
-@WebServlet("/marc_playground/AddRoomServlet")
-public class AddRoomServlet extends HttpServlet {
+@WebServlet("/marc_playground/ChangeRoomDataServlet")
+public class ChangeRoomDataServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddRoomServlet() {
+    public ChangeRoomDataServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,16 +34,15 @@ public class AddRoomServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
- 
-		String number= request.getParameter("number");
-		String size= request.getParameter("size");
-		String site = request.getParameter("site");
+		String id = request.getParameter("id");
+		String number = request.getParameter("number");
+		String capacity = request.getParameter("capacity");
+		String site = request.getParameter("sites");
+		String siteID = SQLHelper.getInstance().getSiteID(site);
 		
-		String querry = "INSERT INTO Rooms id_site, num_room, capacity) VALUES (" + site + "," + number + "," + size + ");";
-		SQLHelper.getInstance().execute(querry);
-		response.getWriter().append("Room added");
- 
+		String update= "UPDATE Rooms SET (id_site=" + site + ", num_room=" + number + ", capacity=" + capacity + "WHERE id_room=\"" + id + "\";";
+		SQLHelper.getInstance().execute(update);
+		response.getWriter().append("Room Changed");
 	}
 
 }
