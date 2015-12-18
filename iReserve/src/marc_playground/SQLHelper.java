@@ -21,6 +21,7 @@ public class SQLHelper {
 		}
 		return _instance;
 	}
+    
 
 	private SQLHelper() {
 		/* Connexion à la base de données */
