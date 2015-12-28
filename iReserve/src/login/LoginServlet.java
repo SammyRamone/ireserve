@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import marc_playground.SQLHelper;
+import helper.SQLHelper;
 
 /**
  * Servlet implementation class LoginServlet
@@ -77,13 +77,13 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			if(admin){
-				response.sendRedirect("mainAdmin.jsp");
+				response.sendRedirect("../main/iReserveAdmin.html");
 			}else{
-				response.sendRedirect("main.jsp");
+				response.sendRedirect("../main/iReserve.html");
 			}
 			
 		} else {
-			response.sendRedirect("logginError.jsp");
+			response.sendRedirect("../login/logginError.jsp");
 		}
 
 	}

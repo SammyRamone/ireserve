@@ -1,4 +1,4 @@
-package marc_playground;
+package rooms;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.SQLHelper;
+
 /**
- * Servlet implementation class RemoveReservationServlet
+ * Servlet implementation class ChangeRoomDataServlet
  */
-@WebServlet("/marc_playground/RemoveReservationServlet")
-public class RemoveReservationServlet extends HttpServlet {
+@WebServlet("/rooms/ChangeRoomDataServlet")
+public class ChangeRoomDataServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveReservationServlet() {
+    public ChangeRoomDataServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,14 +36,15 @@ public class RemoveReservationServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String ids = request.getParameter("ids");
-		String[] idsArr = ids.split(",");
-		for (int i = 0; i < idsArr.length; i++) {
-			System.out.print(idsArr[i]);
-			String command = "DELETE FROM Reservations WHERE id_reservation=" + idsArr[i].trim() + ";";
-			SQLHelper.getInstance().execute(command);
-		}
-		response.getWriter().append("Reservation deleted");
+		String id = request.getParameter("id");
+		String number = request.getParameter("number");
+		String capacity = request.getParameter("capacity");
+		String site = request.getParameter("sites");
+		String siteID = SQLHelper.getInstance().getSiteID(site);
+		
+		String update= "UPDATE Rooms SET id_site=" + siteID + ", num_room=" + number + ", capacity=" + capacity + " WHERE id_room=" + id + ";";
+		SQLHelper.getInstance().execute(update);
+		response.getWriter().append("Room Changed");
 	}
 
 }

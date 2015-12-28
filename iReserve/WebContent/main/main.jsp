@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="ListRoomsServlet">
+<form action="../rooms/ListRoomsServlet">
     	<input type="submit" value="List Rooms">
 	</form>
 </body>

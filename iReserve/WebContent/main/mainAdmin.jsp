@@ -7,16 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="ListRoomsServlet">
+<form action="../rooms/ListRoomsServlet">
     	<input type="submit" value="List Rooms">
 	</form>
-	<form action="RoomManagment.jsp">
+	<form action="../rooms/RoomManagment.jsp">
     	<input type="submit" value="Manage Rooms">
 	</form>
-	<form action="UserManagment.jsp">
+	<form action="../users/UserManagment.jsp">
     	<input type="submit" value="Manage Users">
 	</form>
-	<form action="ReservationManagmentServlet">
+	<form action="../reservations/ReservationManagmentServlet">
     	<input type="submit" value="Manage Reservations">
 	</form>
 	
