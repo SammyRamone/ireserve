@@ -40,7 +40,13 @@ public class DataBaseAccess {
 			return result;
 
 		}
-	
+		
+		public boolean addRoomQuery(String number,String size,String site){
+			String querry = "INSERT INTO Rooms (id_site, num_room, capacity) VALUES (" + site + "," + number + "," + size + ");";
+			SQLHelper.getInstance().execute(querry);
+			return true;  
+		}
+		
 	
 		
 	}
