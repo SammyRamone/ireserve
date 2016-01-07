@@ -1,28 +1,23 @@
 package rooms;
 
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import marc_playground.*;
-import helper.SQLHelper;
-import marc_playground.DataBaseAccess;
-
 
 /**
- * Servlet implementation class AddRoomServlet
+ * Servlet implementation class BookRoom
  */
-@WebServlet("/rooms/AddRoomServlet")
-public class AddRoomServlet extends HttpServlet {
+@WebServlet("/rooms/BookRoom")
+public class BookRoom extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddRoomServlet() {
+    public BookRoom() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +27,7 @@ public class AddRoomServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		this.getServletContext().getRequestDispatcher( "/users/BookReservation.jsp" ).forward( request, response );
 	}
 
 	/**
@@ -40,14 +35,7 @@ public class AddRoomServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
- 
-		String number= request.getParameter("number");
-		String size= request.getParameter("size");
-		String site = request.getParameter("site");
-		
-		if(DataBaseAccess.getInstance().addRoomQuery(number, size, site)== true)
-			response.getWriter().append("Room added");
- 
+		doGet(request, response);
 	}
 
 }
