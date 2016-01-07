@@ -113,6 +113,11 @@ public class SQLHelper {
 		String querry = "SELECT * FROM Sites WHERE name=\"" + siteName + "\";";
 		return firstResult(querry, "id_site");
 	}
+	
+	public String getSiteName(String id_site) {
+		String querry = "SELECT * FROM Sites WHERE id_site=\"" + id_site + "\";";
+		return firstResult(querry, "name");
+	}
 
 	public String getRoomNumber(String roomID) {
 		String querry = "SELECT * FROM Rooms WHERE id_room=\"" + roomID + "\";";

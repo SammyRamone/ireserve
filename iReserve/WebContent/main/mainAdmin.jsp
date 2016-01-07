@@ -16,6 +16,9 @@
 	<form action="../reservations/ReservationManagmentServlet">
     	<input type="submit" value="Manage Reservations">
 	</form>
+	<form action="../batiments/ManageBatimentsServlet">
+    	<input type="submit" value="Manage Batiments">
+	</form>
 	
 </body>
 </html>
