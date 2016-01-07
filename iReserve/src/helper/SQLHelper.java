@@ -227,6 +227,12 @@ public class SQLHelper {
 		String querry = "SELECT * FROM Batiments WHERE id_batiment=\"" + id_batiment + "\";";
 		return firstResult(querry, "nom");
 	}
+	
+	public String getSitebyBatiment(String id_batiment) {
+		String querry = "SELECT * FROM Batiments, Sites WHERE Batiments.id_site=Sites.id_site AND Batiments.id_batiment=\"" + id_batiment + "\";";
+		return firstResult(querry, "name");
+	}
+
 
 	public String getBatimentID(String batiment) {
 		String querry = "SELECT * FROM Batiments WHERE nom=\"" + batiment + "\";";

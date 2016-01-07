@@ -50,12 +50,14 @@ public class ListRoomsServlet extends HttpServlet {
 	}
 	
 	public static String getRoomTable(){
+		//String querry = "SELECT Sites.name, Rooms.num_room, Rooms.capacity, Batiments.nom FROM Rooms, Sites, Batiments WHERE Rooms.id_batiment=Batiments.id_batiment AND Batiments.id_site=Sites.id_site;";
 		String querry = "SELECT * FROM Rooms;";
 		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
-		String[] names = new String[3];
+		String[] names = new String[4];
 		names[0] = "Number";
 		names[1] = "Capacity";
 		names[2] = "Batiment";
+		names[3] = "Site";
 		try {
 			int rows = 0;
 			while(resultat.next()){
@@ -63,12 +65,13 @@ public class ListRoomsServlet extends HttpServlet {
 			}
 			resultat.beforeFirst();
 			System.out.print("rows: " + rows );
-			String[][] data = new String[rows][3];
+			String[][] data = new String[rows][4];
 			for (int i = 0; resultat.next(); i++) {				
-				String[] row = new String[3];
+				String[] row = new String[4];
 				row[0] = resultat.getString("num_room");
 				row[1] = resultat.getString("capacity");
 				row[2]  = SQLHelper.getInstance().getBatimentName(resultat.getString("id_batiment")); 
+				row[3] = SQLHelper.getInstance().getSitebyBatiment(resultat.getString("id_batiment")); 
 				data[i] = row;
 			}
 			return HTMLHelper.makeTable(names, data, rows);
