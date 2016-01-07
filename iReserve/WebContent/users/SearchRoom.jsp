@@ -9,7 +9,7 @@
 	<section>
 		<form method="post"  action="/iReserve/SearchRoom">
 			<input type="date" value="date" name="date"/>
-			<input type="text" value= "etage" name="etage"/>
+			<input type="text" value= "batiment" name="batiment"/>
 			<input type="text" value= "site" name="site"/>
 			<input type="text" value= "capacite" name="capa"/>
 			<input type="radio" value="true" name="particularite-secu"/>securite<br>
