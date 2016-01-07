@@ -1,0 +1,79 @@
+<html>
+
+<head>
+</head>
+
+<body>
+	  
+<br/>
+
+<div class="div1">
+
+	<h2>Search Room</h2>
+	<p>Date :</p>
+	<input class="calendar" id="date" type="date" size="20" v/>
+	<p>A partir de :</p>
+	<input class="calendar" id="heure" type="time" size="20" v/>
+	<p>Nombre de personnes :</p>
+	<input class="usernameTextArea" id="usernameTextArea" type="text" size="20" placeholder="Entrez le nombre de personnes" onclick="clearText()"/>
+	<p>Equipement :</p>
+	<INPUT type="checkbox" name="digilab" value="1"> digilab
+	<INPUT type="checkbox" name="sécurisée" value="2"> salle securisee
+	<INPUT type="checkbox" name="vidéoprojecteur" value="3"> videoprojecteur
+	<INPUT type="checkbox" name="visio" value="4"> visioprojecteur
+	<INPUT type="checkbox" name="tableau" value="5"> tableau
+	</select>
+	<p/>
+	<button type="button" id="b2" onclick="mouseDown()">Search Room</button>
+	
+</div>
+
+<div class="div3">
+	planning de la mort qui tue
+	
+	<!--
+		<TD bgcolor="#00FF00">9h15-10h00 </TD>
+		-->
+	
+
+  
+ <table id="table1">
+    <tr>
+        <th></th>
+        <th id="1" scope="col" value="yo">header1</th>
+        <th scope="col">header2</th>
+        <th scope="col">header3</th>
+    </tr>
+    <tr>
+        <th scope="row" class="1">1111</th>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <th scope="row" class="2">2222</th>
+        <td>2</td>
+        <td>2</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <th scope="row" class="3">3333</th>
+        <td>3</td>
+        <td>3</td>
+        <td>3</td>
+    </tr>
+</table>
+
+</div>
+
+</body>
+
+<script>
+	function mouseDown() {
+		//lancer la recherche des salles disponibles
+		document.getElementById("table1").background-color = "red";
+		document.getElementById("table1").headers = truc ;
+	}
+</script>
+
+</html>
