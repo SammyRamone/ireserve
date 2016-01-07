@@ -19,6 +19,8 @@
 	<form action="../batiments/ManageBatimentsServlet">
     	<input type="submit" value="Manage Batiments">
 	</form>
-	
+	<form action="../sites/ManageSitesServlet">
+    	<input type="submit" value="Manage Sites">
+	</form>
 </body>
 </html>

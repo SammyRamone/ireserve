@@ -43,6 +43,7 @@ public class HTMLHelper {
 			buffer.append(entrys[i]);
 		}
 		buffer.append("</select>");
+		System.out.println(buffer.toString());
 		return buffer.toString();
 	}
 
