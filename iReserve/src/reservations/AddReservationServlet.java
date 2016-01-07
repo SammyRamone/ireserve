@@ -1,5 +1,4 @@
-package rooms;
-
+package reservations;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,22 +6,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import marc_playground.*;
-import helper.SQLHelper;
-import marc_playground.DataBaseAccess;
 
+import helper.SQLHelper;
 
 /**
- * Servlet implementation class AddRoomServlet
+ * Servlet implementation class AddReservationServlet
  */
-@WebServlet("/rooms/AddRoomServlet")
-public class AddRoomServlet extends HttpServlet {
+@WebServlet("/reservations/AddReservationServlet")
+public class AddReservationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddRoomServlet() {
+    public AddReservationServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,15 +36,19 @@ public class AddRoomServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
- 
-		String number= request.getParameter("number");
-		String size= request.getParameter("size");
-		String site = request.getParameter("site");
+		String room = request.getParameter("room");
+		String person = request.getParameter("person");
+		String object = request.getParameter("object");
+		String date = request.getParameter("date");
+		String start = request.getParameter("start");
+		String end = request.getParameter("end");
 		
-		if(DataBaseAccess.getInstance().addRoomQuery(number, size, site)== true)
-			response.getWriter().append("Room added");
- 
+		String id_room = SQLHelper.getInstance().getRoomID(room);
+		String id_person = SQLHelper.getInstance().getUserID(person);
+
+		String add = "INSERT INTO Reservations (id_room, id_person, object, date, start, end) VALUES (" + id_room + "," + id_person + ",\"" + object + "\",\"" + date + "\",\"" + start + "\",\"" + end + "\");";
+		SQLHelper.getInstance().execute(add);
+		response.getWriter().append("Reservation Added");
 	}
 
 }

@@ -1,4 +1,4 @@
-/*package marc_playground;
+package marc_playground;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,4 +53,4 @@ public class DataBaseAccess {
 	
 		
 	}
-*/
+

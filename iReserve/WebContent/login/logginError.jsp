@@ -13,7 +13,7 @@
 	<header>
 		<h1>iReserve</h1>
 	</header>
-	This didn't work. Try again!
+	Cela n'a pas fonctionner , essayez encore! 
 	<section class="greytext">
 		<form action="LoginServlet" method="post">
 			<div><label>entrer votre pseudonyme   : </label><input type="text" value="login" name="login" id="login" autofocus/></div>
@@ -24,7 +24,7 @@
 	
 	<section class="greytext">
 		<form action="../users/RegisterServlet" method="get">
-			<div><label>No account? Register here:</label><input type="submit" value="Register" id="submit"/></div>
+			<div><label>pas de compte? enregistrez-vous ici:</label><input type="submit" value="Register" id="submit"/></div>
 		</form>
 	</section>
 

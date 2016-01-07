@@ -7,7 +7,7 @@
 </head>
 <body>
 	<section>
-		<form method="post"  action="/iReserve/SearchRoom">
+		<form method="post"  action="/iReserve/rooms/SearchRoom">
 			<input type="date" value="date" name="date"/>
 			<input type="text" value= "batiment" name="batiment"/>
 			<input type="text" value= "site" name="site"/>
