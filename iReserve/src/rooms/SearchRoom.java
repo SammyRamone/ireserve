@@ -4,12 +4,16 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import rooms.ResultSRQuerry;
 import helper.SQLHelper;
@@ -33,7 +37,37 @@ public class SearchRoom extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		ArrayList<String> sites = new ArrayList<String>();
+		HashMap<String, Object[]> batiments = new HashMap<String, Object[]>();
+		SQLHelper sqlhelp = SQLHelper.getInstance();
+		String querry = "SELECT * FROM Sites;";
+		ResultSet a = sqlhelp.doQuerry(querry);
+		try {
+			while(a.next())
+			{
+				String site = a.getString("name");
+				ArrayList<String> bats = new ArrayList<String>();
+				querry = "SELECT Batiments.nom FROM Sites, Batiments WHERE (Sites.name=\"" + site + "\" and Sites.id_site=Batiments.id_site);";
+				ResultSet b = sqlhelp.doQuerry(querry);
+				while(b.next())
+				{
+					bats.add(b.getString("nom"));
+				}
+				sites.add(site);
+				System.out.println(a.getString("name"));
+				batiments.put(site, bats.toArray());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Gson gson = new Gson();
+		String gmap = gson.toJson(batiments);
+		
+		request.setAttribute("Batiments", batiments);
+		request.setAttribute("GBatiments", gmap);
+		request.setAttribute("Sites", sites.toArray());
+		System.out.println(batiments);
 		this.getServletContext().getRequestDispatcher( "/users/SearchRoom.jsp" ).forward( request, response );
 	}
 
