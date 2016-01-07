@@ -4,45 +4,63 @@
 <link rel="shortcut icon" href="../images/Radiation.ico">
 
 <head>
-	<link rel="stylesheet" href="iStyle.css"><title>iReserve</title>
+<link rel="stylesheet" href="iStyle.css">
+<title>iReserve</title>
 </head>
 
 <body>
 
-<header>
-	<h1><center><font style="font-family:verdana">iReserve</font></center></h1>
-	<center><img src="../images/sopra-steria.png" class="sopra"/></center>
-	<br/>
-    <div class="nav">
-      <ul>
-        <li><a href="iReserveAdmin.html">Home</a></li>
-        <li><a href="../rooms/RoomManagment.jsp">Rooms</a>
-          <ul>
-            <li><a href="../rooms/ListRoomsServlet">List Rooms</a></li>
-            <li><a href="../rooms/AddRoom.jsp">Add Room</a></li>
-            <li><a href="../rooms/RemoveRoomServlet">Manage Room</a></li>
-          </ul>
-        </li>
-        <li><a href="../users/UserManagment.jsp">Users</a>
-          <ul>
-            <li><a href="../users/RegisterServlet">Add User</a></li>
-            <li><a href="../users/ManageUserServlet">Manage User</a></li>
-          </ul></li>
-        <li><a href="../reservations/ReservationManagmentServlet">Reservations</a></li>
-      </ul>
-    </div>
-    </br>
-    </br>
-    <div>
-    	<iframe src="mainAdmin.jsp" height="700" width="1600"></iframe>
-    </div>
-</header>
 
-<div class="absolute">
-	<img src="../images/logo1.png" class="flottant"/>
-</div>
+	<header>
+	<h1>
+		<center>
+			<font style="font-family: verdana">iReserve</font>
+		</center>
+	</h1>
+	<center>
+		<img src="../images/sopra-steria.png" class="sopra" />
+	</center>
+	<br />
+	<div class="nav">
+		<ul>
+			<li><a href="iReserveAdmin.html">Home</a></li>
+			<li><a href="../rooms/RoomManagment.jsp" target="frame">Rooms</a>
+				<ul>
+					<li><a href="../rooms/ListRooms.jsp" target="frame">List
+							Rooms</a></li>
+					<li><a href="../rooms/AddRoom.jsp" target="frame">Add Room</a></li>
+					<li><a href="../rooms/RemoveRoomServlet" target="frame">Manage
+							Room</a></li>
+				</ul></li>
+			<li><a href="../users/UserManagment.jsp" target="frame">Users</a>
+				<ul>
+					<li><a href="../users/RegisterServlet" target="frame">Add
+							User</a></li>
+					<li><a href="../users/ManageUserServlet" target="frame">Manage
+							User</a></li>
+				</ul></li>
 
-<br/>
+			<li><a href="../batiments/ManageBatimentsServlet" target="frame">Batiment</a></li>
+
+			<li><a href="../sites/ManageSitesServlet" target="frame">Sites</a></li>
+			<li><a href="../reservations/ReservationManagmentServlet"
+				target="frame">Reservations</a></li>
+		</ul>
+	</div>
+	</br>
+	</br>
+	<div>
+
+		<iframe frameborder="0" src="mainAdmin.jsp" height="100%" width="100%" name="frame"></iframe>
+
+	</div>
+	</header>
+
+	<div class="absolute">
+		<img src="../images/logo1.png" class="flottant" />
+	</div>
+
+	<br />
 
 </body>
 </html>

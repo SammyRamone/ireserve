@@ -5,13 +5,17 @@ header {
 	border-color: #c60000;
 	border-width: 5px;*/
 	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
-
 }
 
 body {
 	color:black;
 	background-color:#FFFFFF; /*#101010*/
+	text-align: center;
+	table-align: center;
+	margin-left: auto;
+    margin-right: auto;
 	/*background-image:url("http://homepages.laas.fr/lopez/images/Jozefowiez.jpg")*/
+
 }
 
 .flottant{
@@ -36,18 +40,18 @@ div.absolute1 {
 
 /*nav bar*/
 .nav{
-	/*border-style: outset;
-	border-color: #2b2b2b;
-	border-width: 5px;*/
 	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
-	left: 200px;
+	width: 1000px;
+	position: center;
+	margin-left: auto;
+    margin-right: auto;
 }
 .nav ul {
   list-style: none;
   background-color: #FF9900;
   text-align: center;
   padding: 0;
-  margin: 0;
+  
 }
 
 .nav li {
@@ -67,7 +71,7 @@ div.absolute1 {
 }
 
 .nav a:hover {
-  background-color: #2412B4;
+  background-color: #660000;
 }
 
 .nav a.active {
@@ -127,7 +131,7 @@ div.absolute1 {
   }
 }
 
-.username_text {
+.profil_text {
 	white-space: nowrap;
 	color: red;
 	display: inline;
@@ -138,7 +142,36 @@ div.absolute1 {
 	background-size: 15px 15px;
 	background-position: 3px 1px;
 	background-repeat: no-repeat;
-	background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
+	background-image: name.svg;
+	padding-left: 20px;
 }
 
+div.div3 {
+    position: absolute;
+    top: 250px;
+    right: 28px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.change_profil_text {
+	color: black;
+	white-space: nowrap;
+	display: inline;
+	font-size: 130%;
+}
+
+form{
+	text-align: center;
+}
+.marginIframe{
+	margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
 

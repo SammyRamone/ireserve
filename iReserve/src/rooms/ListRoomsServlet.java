@@ -37,12 +37,25 @@ public class ListRoomsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+	
+	public static String getRoomTable(){
 		String querry = "SELECT * FROM Rooms;";
 		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
 		String[] names = new String[3];
 		names[0] = "Number";
 		names[1] = "Capacity";
-		names[2] = "Site";
+		names[2] = "Batiment";
 		try {
 			int rows = 0;
 			while(resultat.next()){
@@ -55,26 +68,15 @@ public class ListRoomsServlet extends HttpServlet {
 				String[] row = new String[3];
 				row[0] = resultat.getString("num_room");
 				row[1] = resultat.getString("capacity");
-				row[2] = resultat.getString("id_site");
+				row[2]  = SQLHelper.getInstance().getBatimentName(resultat.getString("id_batiment")); 
 				data[i] = row;
 			}
-			response.getWriter().append(HTMLHelper.makeTable(names, data, rows));
+			return HTMLHelper.makeTable(names, data, rows);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		return "";
 	}
 	
 }
