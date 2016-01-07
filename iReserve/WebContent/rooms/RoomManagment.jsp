@@ -7,6 +7,10 @@
 <title>iReserve - Room Management</title>
 </head>
 <body>
+
+	<form action="ListRoomsServlet">
+    	<input type="submit" value="List Rooms">
+	</form>
 	<form action="AddRoom.jsp">
     	<input type="submit" value="Add Rooms">
 	</form>
