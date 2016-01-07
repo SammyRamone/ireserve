@@ -42,7 +42,7 @@ public class ListRoomsServlet extends HttpServlet {
 		String[] names = new String[3];
 		names[0] = "Number";
 		names[1] = "Capacity";
-		names[2] = "Site";
+		names[2] = "Batiment";
 		try {
 			int rows = 0;
 			while(resultat.next()){
@@ -55,16 +55,14 @@ public class ListRoomsServlet extends HttpServlet {
 				String[] row = new String[3];
 				row[0] = resultat.getString("num_room");
 				row[1] = resultat.getString("capacity");
-				row[2] = resultat.getString("id_site");
+				row[2]  = SQLHelper.getInstance().getBatimentName(resultat.getString("id_batiment")); 
 				data[i] = row;
 			}
 			response.getWriter().append(HTMLHelper.makeTable(names, data, rows));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
+		}		
 	}
 
 	/**

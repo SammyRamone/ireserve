@@ -146,6 +146,32 @@ public class SQLHelper {
 		}
 	}
 
+
+	public String[] getAllBatiments() {
+		String querry = "SELECT * FROM Batiments";
+		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
+
+		int entries = 0;
+		String[] batiments = null;
+		try {
+			while (resultat.next()) {
+				entries++;
+			}
+			resultat.beforeFirst();
+
+			int i;
+			batiments = new String[entries];
+			i = 0;
+
+			for (; resultat.next(); i++) {
+				batiments[i] = resultat.getString("nom");
+			}
+			return batiments;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
 	private String firstResult(String querry, String column) {
 		try {
 			ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
@@ -186,6 +212,16 @@ public class SQLHelper {
 	public String getUserID(String username) {
 		String querry = "SELECT * FROM Persons WHERE username=\"" + username + "\";";
 		return firstResult(querry, "id_person");
+	}
+	
+	public String getBatimentName(String id_batiment) {
+		String querry = "SELECT * FROM Batiments WHERE id_batiment=\"" + id_batiment + "\";";
+		return firstResult(querry, "nom");
+	}
+	
+	public String getBatimentID(String batiment) {
+		String querry = "SELECT * FROM Batiments WHERE nom=\"" + batiment + "\";";
+		return firstResult(querry, "id_batiment");
 	}
 
 }

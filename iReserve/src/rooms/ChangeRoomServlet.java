@@ -51,19 +51,19 @@ public class ChangeRoomServlet extends HttpServlet {
 			resultat.next();
 			String id = resultat.getString("id_room");
 			String capacity = resultat.getString("capacity");
-			String idSite = resultat.getString("id_site");
+			String idBatiment = resultat.getString("id_batiment");
 
-			querry = "SELECT * FROM Sites WHERE id_site=" + idSite;
+			querry = "SELECT * FROM Batiments WHERE id_site=" + idBatiment;
 			resultat = SQLHelper.getInstance().doQuerry(querry);
 			resultat.next();
-			String site = resultat.getString("name");
+			String batiment = resultat.getString("name");
 
 			String form1 = "<html><head></head><body>" + "<form action=\"ChangeRoomDataServlet\" method=\"post\"> "
 					+ "Room ID: <input type=\"text\" size=\"5\" name=\"id\" value=\"" + id + "\"/>"
 					+ "Room Number: <input type=\"text\" size=\"5\" name=\"number\" value=\"" + number + "\"/>"
 					+ "Room Capacity: <input type=\"text\" size=\"5\" name=\"capacity\" value=\"" + capacity + "\"/>";
-			String [] sites = SQLHelper.getInstance().getAllSites(false);
-			String option = HTMLHelper.makeOption(sites, "sites", site);
+			String [] batiments = SQLHelper.getInstance().getAllBatiments();
+			String option = HTMLHelper.makeOption(batiments, "batiment", batiment);
 			String form2 = "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Change Room\" />" + "</form>"
 					+ "</body></html>";
 
