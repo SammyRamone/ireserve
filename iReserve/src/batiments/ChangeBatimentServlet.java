@@ -63,7 +63,7 @@ public class ChangeBatimentServlet extends HttpServlet {
 			String site = resultat.getString("name");
 			
 			String option = HTMLHelper.makeOption(sites, "site", site);
-			String form2 = "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Change User\" />" + "</form>"
+			String form2 = "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Change Batiment\" />" + "</form>"
 					+ "</body></html>";
 
 			String re = form1 + option +  form2;

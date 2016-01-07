@@ -43,10 +43,14 @@ public class AddRoomServlet extends HttpServlet {
  
 		String number= request.getParameter("number");
 		String size= request.getParameter("size");
-		String site = request.getParameter("site");
+		String batiment = request.getParameter("batiment");
+		System.out.println(batiment);
+		String id_batiment = SQLHelper.getInstance().getBatimentID(batiment);
 		
-		if(DataBaseAccess.getInstance().addRoomQuery(number, size, site)== true)
-			response.getWriter().append("Room added");
+		String querry = "INSERT INTO Rooms (id_batiment, num_room, capacity) VALUES (" + id_batiment + "," + number + "," + size + ");";
+		SQLHelper.getInstance().execute(querry);
+
+		response.getWriter().append("Room Added");
  
 	}
 
