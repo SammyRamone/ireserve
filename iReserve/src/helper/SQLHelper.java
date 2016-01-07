@@ -1,4 +1,4 @@
-package marc_playground;
+package helper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -97,17 +97,41 @@ public class SQLHelper {
 		}
 	}
 
-	public String getSiteID(String siteName) {
+	private String firstResult(String querry, String column) {
 		try {
-			String idQuerry = "SELECT * FROM Sites WHERE name=\"" + siteName + "\";";
-			ResultSet resultat = SQLHelper.getInstance().doQuerry(idQuerry);
+			ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
 			resultat.next();
-			return resultat.getString("id_site");
+			return resultat.getString(column);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public String getSiteID(String siteName) {
+		String querry = "SELECT * FROM Sites WHERE name=\"" + siteName + "\";";
+		return firstResult(querry, "id_site");
+	}
+
+	public String getRoomNumber(String roomID) {
+		String querry = "SELECT * FROM Rooms WHERE id_room=\"" + roomID + "\";";
+		return firstResult(querry, "num_room");
+	}
+
+	public String getRoomID(String roomNumber) {
+		String querry = "SELECT * FROM Rooms WHERE num_room=\"" + roomNumber + "\";";
+		return firstResult(querry, "id_room");
+	}
+
+	public String getUsername(String personID) {
+		String querry = "SELECT * FROM Persons WHERE id_person=\"" + personID + "\";";
+		return firstResult(querry, "username");
+	}
+	
+	public String getUserID(String username) {
+		String querry = "SELECT * FROM Persons WHERE username=\"" + username + "\";";
+		return firstResult(querry, "id_person");
 	}
 
 }

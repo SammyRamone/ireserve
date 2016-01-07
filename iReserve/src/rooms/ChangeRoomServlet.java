@@ -1,4 +1,4 @@
-package marc_playground;
+package rooms;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.HTMLHelper;
+import helper.SQLHelper;
+
 /**
  * Servlet implementation class ChangeRoomServlet
  */
-@WebServlet("/marc_playground/ChangeRoomServlet")
+@WebServlet("/rooms/ChangeRoomServlet")
 public class ChangeRoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -41,7 +44,6 @@ public class ChangeRoomServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String number = request.getParameter("number");
 		String querry = "SELECT * FROM Rooms WHERE num_room=" + number + ";";
 		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
@@ -57,7 +59,7 @@ public class ChangeRoomServlet extends HttpServlet {
 			String site = resultat.getString("name");
 
 			String form1 = "<html><head></head><body>" + "<form action=\"ChangeRoomDataServlet\" method=\"post\"> "
-					+ "Room ID: <input type=\"text\" size=\"5\" name=\"id\" value=\"" + id + "\" disabled/>"
+					+ "Room ID: <input type=\"text\" size=\"5\" name=\"id\" value=\"" + id + "\"/>"
 					+ "Room Number: <input type=\"text\" size=\"5\" name=\"number\" value=\"" + number + "\"/>"
 					+ "Room Capacity: <input type=\"text\" size=\"5\" name=\"capacity\" value=\"" + capacity + "\"/>";
 			String [] sites = SQLHelper.getInstance().getAllSites(false);

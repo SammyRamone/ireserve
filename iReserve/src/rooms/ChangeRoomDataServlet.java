@@ -1,4 +1,4 @@
-package marc_playground;
+package rooms;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.SQLHelper;
+
 /**
  * Servlet implementation class ChangeRoomDataServlet
  */
-@WebServlet("/marc_playground/ChangeRoomDataServlet")
+@WebServlet("/rooms/ChangeRoomDataServlet")
 public class ChangeRoomDataServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,7 +42,7 @@ public class ChangeRoomDataServlet extends HttpServlet {
 		String site = request.getParameter("sites");
 		String siteID = SQLHelper.getInstance().getSiteID(site);
 		
-		String update= "UPDATE Rooms SET (id_site=" + site + ", num_room=" + number + ", capacity=" + capacity + "WHERE id_room=\"" + id + "\";";
+		String update= "UPDATE Rooms SET id_site=" + siteID + ", num_room=" + number + ", capacity=" + capacity + " WHERE id_room=" + id + ";";
 		SQLHelper.getInstance().execute(update);
 		response.getWriter().append("Room Changed");
 	}

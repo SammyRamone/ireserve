@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<link rel="shortcut icon" href="Radiation.ico">
+
+<head>
+	<link rel="stylesheet" href="iReserve.css"><title>iReserve</title>
+</head>
+
+<body>
+
+<header>
+	<h1><center><font style="font-family:verdana">iReserve</font></center></h1>
+	<center><img src="sopra-steria.png" class="sopra"/></center>
+	<br/>
+    <div class="nav">
+      <ul>
+        <li><a href="iReserve.html">Home</a></li>
+        <li><a href="iReserve2.html">Search Room</a>
+          <!--<ul>
+            <li><a href="#">Tutorial #1</a></li>
+            <li><a href="#">Tutorial #2</a></li>
+            <li><a href="#">Tutorial #3</a></li>
+          </ul>-->
+        </li>
+        <li><a href="iReserve3.html">Book Room</a></li>
+        <li><a href="iReserve4.html">Profil</a></li>
+        <li><a href="iReserve5.html">Contact</a></li>
+      </ul>
+    </div>
+</header>
+
+<div class="absolute">
+	<img src="logo1.png" class="flottant"/>
+</div>
+
+<br/>
+
+<div class="div1">
+	<font color="white">
+		<h1>Profil</h1>
+		<p class="username_text">Username : </p><p class="username_text" id="username"></p><br/><br/> <!-- recuperer le nom d'utilisateur -->
+		<td class="form">
+			<input class="usernameTextArea" id="usernameTextArea"type="text" size="25" placeholder="Enter your name here!" onclick="clearText()"/>
+		</td>
+		<button type="button" id="b1" onclick="mouseDown()">Change Username</button>
+	</font>
+</div>
+
+
+
+</body>
+
+<script>
+	function mouseDown() {
+		/*document.getElementById("b1").style.color = "red";*/
+		document.getElementById("username").innerHTML = usernameTextArea.value ;
+	}
+	function clearText() {
+		document.getElementById("username_text").innerHTML = "";
+	}
+</script>
+
+</html>
+
+
+
+
+

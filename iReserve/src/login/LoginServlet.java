@@ -1,4 +1,4 @@
-package marc_playground;
+package login;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,10 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.SQLHelper;
+
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/marc_playground/LoginServlet")
+@WebServlet("/login/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -75,13 +77,13 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			if(admin){
-				response.sendRedirect("mainAdmin.jsp");
+				response.sendRedirect("../main/iReserveAdmin.html");
 			}else{
-				response.sendRedirect("main.jsp");
+				response.sendRedirect("../main/iReserve.html");
 			}
 			
 		} else {
-			response.sendRedirect("logginError.jsp");
+			response.sendRedirect("../login/logginError.jsp");
 		}
 
 	}
