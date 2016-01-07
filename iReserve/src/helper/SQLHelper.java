@@ -27,7 +27,7 @@ public class SQLHelper {
 		/* Connexion à la base de données */
 		_url = "jdbc:mysql://localhost:3306/bdd_sopra";
 		_utilisateur = "root";
-		_motDePasse = "mamaya";
+		_motDePasse = "root";
 		_connexion = null;
 	}
 
