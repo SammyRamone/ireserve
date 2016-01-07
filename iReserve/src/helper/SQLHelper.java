@@ -27,7 +27,7 @@ public class SQLHelper {
 		/* Connexion à la base de données */
 		_url = "jdbc:mysql://localhost:3306/bdd_sopra";
 		_utilisateur = "root";
-		_motDePasse = "mamaya";
+		_motDePasse = "root";
 		_connexion = null;
 	}
 
@@ -112,6 +112,11 @@ public class SQLHelper {
 	public String getSiteID(String siteName) {
 		String querry = "SELECT * FROM Sites WHERE name=\"" + siteName + "\";";
 		return firstResult(querry, "id_site");
+	}
+	
+	public String getSiteName(String id_site) {
+		String querry = "SELECT * FROM Sites WHERE id_site=\"" + id_site + "\";";
+		return firstResult(querry, "name");
 	}
 
 	public String getRoomNumber(String roomID) {

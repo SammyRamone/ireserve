@@ -1,5 +1,4 @@
-package rooms;
-
+package batiments;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,22 +6,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import marc_playground.*;
-import helper.SQLHelper;
-import marc_playground.DataBaseAccess;
 
+import helper.SQLHelper;
 
 /**
- * Servlet implementation class AddRoomServlet
+ * Servlet implementation class ChangeBatimentDataServlet
  */
-@WebServlet("/rooms/AddRoomServlet")
-public class AddRoomServlet extends HttpServlet {
+@WebServlet("/batiments/ChangeBatimentDataServlet")
+public class ChangeBatimentDataServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddRoomServlet() {
+    public ChangeBatimentDataServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,15 +36,14 @@ public class AddRoomServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
- 
-		String number= request.getParameter("number");
-		String size= request.getParameter("size");
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
 		String site = request.getParameter("site");
+		String siteID = SQLHelper.getInstance().getSiteID(site);		
 		
-		if(DataBaseAccess.getInstance().addRoomQuery(number, size, site)== true)
-			response.getWriter().append("Room added");
- 
+		String update= "UPDATE Batiments SET nom=\"" + name + "\", id_site=" + siteID + " WHERE id_batiment=" + id + ";";
+		SQLHelper.getInstance().execute(update);
+		response.getWriter().append("Batiment Changed");
 	}
 
 }
