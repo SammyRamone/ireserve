@@ -37,6 +37,19 @@ public class ListRoomsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+	
+	public static String getRoomTable(){
 		String querry = "SELECT * FROM Rooms;";
 		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
 		String[] names = new String[3];
@@ -58,21 +71,12 @@ public class ListRoomsServlet extends HttpServlet {
 				row[2]  = SQLHelper.getInstance().getBatimentName(resultat.getString("id_batiment")); 
 				data[i] = row;
 			}
-			response.getWriter().append(HTMLHelper.makeTable(names, data, rows));
+			return HTMLHelper.makeTable(names, data, rows);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		}
+		return "";
 	}
 	
 }

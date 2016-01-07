@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../main/iStyle.css">
 <title>iReserve - Room Management</title>
 </head>
 <body>
 
-	<form action="ListRoomsServlet">
+	<form action="ListRooms.jsp">
     	<input type="submit" value="List Rooms">
 	</form>
 	<form action="AddRoom.jsp">
