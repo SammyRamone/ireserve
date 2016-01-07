@@ -1,0 +1,36 @@
+<html>
+
+<head>
+</head>
+
+<body>
+	  
+<div class="div1">
+	<font color="white">
+		<h1>Profil</h1>
+		<p class="profil_text">Username : </p><p class="profil_text" id="username"></p><br/><br/> <!-- recuperer le nom d'utilisateur -->
+		<p class="profil_text">Location : </p><p class="profil_text" id="location"></p><br/><br/> <!-- recuperer le site -->
+		<p class="change_profil_text">Change profil :</p>		<br/><br/>
+		<p class="profil_text">Username : </p>
+		<input class="usernameTextArea" id="usernameTextArea" type="text" size="20" placeholder="Enter your name here!" onclick="clearText()"/>
+		<br/><br/>
+		<p class="profil_text">Location : </p>
+		<input class="usernameTextArea" id="usernameTextArea" type="text" size="20" placeholder="Enter your name here!" onclick="clearText()"/>
+		<button type="button" id="b1" onclick="mouseDown()">Change Username</button>
+	</font>
+</div>
+
+
+
+</body>
+
+<script>
+	function mouseDown() {
+		document.getElementById("username").innerHTML = usernameTextArea.value ;
+	}
+	function clearText() {
+		document.getElementById("username_text").innerHTML = "";
+	}
+</script>
+
+</html>
