@@ -1,4 +1,4 @@
-package marc_playground;
+package users;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.HTMLHelper;
+import helper.SQLHelper;
+
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet("/marc_playground/RegisterServlet")
+@WebServlet("/users/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

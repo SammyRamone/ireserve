@@ -1,7 +1,10 @@
-package marc_playground;
+/*package marc_playground;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import helper.Pair;
+import helper.SQLHelper;
 
 public class DataBaseAccess {
 	public static DataBaseAccess instance; 
@@ -40,8 +43,14 @@ public class DataBaseAccess {
 			return result;
 
 		}
-	
+		
+		public boolean addRoomQuery(String number,String size,String site){
+			String querry = "INSERT INTO Rooms (id_site, num_room, capacity) VALUES (" + site + "," + number + "," + size + ");";
+			SQLHelper.getInstance().execute(querry);
+			return true;  
+		}
+		
 	
 		
 	}
-
+*/

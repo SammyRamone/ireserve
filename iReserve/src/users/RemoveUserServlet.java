@@ -1,4 +1,4 @@
-package marc_playground;
+package users;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.SQLHelper;
+
 /**
- * Servlet implementation class RemoveReservationServlet
+ * Servlet implementation class RemoveUserServlet
  */
-@WebServlet("/marc_playground/RemoveReservationServlet")
-public class RemoveReservationServlet extends HttpServlet {
+@WebServlet("/users/RemoveUserServlet")
+public class RemoveUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveReservationServlet() {
+    public RemoveUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,10 +40,10 @@ public class RemoveReservationServlet extends HttpServlet {
 		String[] idsArr = ids.split(",");
 		for (int i = 0; i < idsArr.length; i++) {
 			System.out.print(idsArr[i]);
-			String command = "DELETE FROM Reservations WHERE id_reservation=" + idsArr[i].trim() + ";";
+			String command = "DELETE FROM Persons WHERE id_person=" + idsArr[i].trim() + ";";
 			SQLHelper.getInstance().execute(command);
 		}
-		response.getWriter().append("Reservation deleted");
+		response.getWriter().append("User deleted");
 	}
 
 }
