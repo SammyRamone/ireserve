@@ -38,6 +38,7 @@ public class SearchRoom extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<String> sites = new ArrayList<String>();
+		ArrayList<String> capacity = new ArrayList<String>();
 		HashMap<String, Object[]> batiments = new HashMap<String, Object[]>();
 		SQLHelper sqlhelp = SQLHelper.getInstance();
 		String querry = "SELECT * FROM Sites;";
@@ -54,7 +55,6 @@ public class SearchRoom extends HttpServlet {
 					bats.add(b.getString("nom"));
 				}
 				sites.add(site);
-				System.out.println(a.getString("name"));
 				batiments.put(site, bats.toArray());
 			}
 		} catch (SQLException e) {
@@ -64,10 +64,24 @@ public class SearchRoom extends HttpServlet {
 		Gson gson = new Gson();
 		String gmap = gson.toJson(batiments);
 		
-		request.setAttribute("Batiments", batiments);
-		request.setAttribute("GBatiments", gmap);
+		querry = "SELECT Rooms.capacity FROM Rooms GROUP BY Rooms.capacity HAVING COUNT(Rooms.capacity)>=0;";
+		a = sqlhelp.doQuerry(querry);
+		
+		try {
+			while(a.next())
+			{
+				String c = a.getString("capacity");
+				capacity.add(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("Batiments", batiments); //batiment init
+		request.setAttribute("GBatiments", gmap); //batiment pour changer
 		request.setAttribute("Sites", sites.toArray());
-		System.out.println(batiments);
+		request.setAttribute("Capacities", capacity.toArray());
 		this.getServletContext().getRequestDispatcher( "/users/SearchRoom.jsp" ).forward( request, response );
 	}
 
@@ -132,13 +146,12 @@ public class SearchRoom extends HttpServlet {
 		String querry = "";
 		if(havingCount==0)
 		{
-			querry = "SELECT Rooms.num_room,Reservations.start, Reservations.end FROM Sites, Rooms, Reservations, Batiments where (Batiments.nom=\"" + batiment + "\" and Sites.name=\"" +site + "\" and Reservations.date=\"" + date + "\" and Sites.id_site=Batiments.id_site and Rooms.capacity=" + capa + " and Rooms.id_batiment=Batiments.id_batiment and Rooms.id_room=Reservations.id_room and Rooms.id_room IN (SELECT Rooms.id_room FROM Rooms, Particularities, Own where (Own.id_room = Rooms.id_room and Own.id_part=Particularities.id_part) GROUP BY Rooms.id_room HAVING COUNT(Rooms.id_room)>= " + havingCount + "));";
+			querry = "SELECT Rooms.num_room,Reservations.start, Reservations.end FROM Sites, Rooms, Reservations, Batiments where (Batiments.nom=\"" + batiment + "\" and Sites.name=\"" +site + "\" and Reservations.date=\"" + date + "\" and Sites.id_site=Batiments.id_site and Rooms.capacity>=" + capa + " and Rooms.id_batiment=Batiments.id_batiment and Rooms.id_room=Reservations.id_room and Rooms.id_room IN (SELECT Rooms.id_room FROM Rooms, Particularities, Own where (Own.id_room = Rooms.id_room and Own.id_part=Particularities.id_part) GROUP BY Rooms.id_room HAVING COUNT(Rooms.id_room)>= " + havingCount + "));";
 		}
 		else
 		{
-			querry = "SELECT Rooms.num_room,Reservations.start, Reservations.end FROM Sites, Rooms, Reservations, Batiments where (Batiments.nom=\"" + batiment + "\" and Sites.name=\"" +site + "\" and Reservations.date=\"" + date + "\" and Sites.id_site=Batiments.id_site and Rooms.capacity=" + capa + " and Rooms.id_batiment=Batiments.id_batiment and Rooms.id_room=Reservations.id_room and Rooms.id_room IN (SELECT Rooms.id_room FROM Rooms, Particularities, Own where ((" + particularities + ")  and Own.id_room = Rooms.id_room and Own.id_part=Particularities.id_part) GROUP BY Rooms.id_room HAVING COUNT(Rooms.id_room)>= " + havingCount + "));";
+			querry = "SELECT Rooms.num_room,Reservations.start, Reservations.end FROM Sites, Rooms, Reservations, Batiments where (Batiments.nom=\"" + batiment + "\" and Sites.name=\"" +site + "\" and Reservations.date=\"" + date + "\" and Sites.id_site=Batiments.id_site and Rooms.capacity>=" + capa + " and Rooms.id_batiment=Batiments.id_batiment and Rooms.id_room=Reservations.id_room and Rooms.id_room IN (SELECT Rooms.id_room FROM Rooms, Particularities, Own where ((" + particularities + ")  and Own.id_room = Rooms.id_room and Own.id_part=Particularities.id_part) GROUP BY Rooms.id_room HAVING COUNT(Rooms.id_room)>= " + havingCount + "));";
 		}
-		System.out.println(querry);
 		ResultSet a = sqlhelp.doQuerry(querry);
 		ArrayList<ResultSRQuerry> result = new ArrayList<ResultSRQuerry>();
 		

@@ -6,12 +6,13 @@
 <head>
 	<meta charset="UTF-8"/>
 	<%=HTMLHelper.CSS %>
+	<c:set var="currentD" value="<%=new java.util.Date()%>" />
 </head>
 <body>
 	<section>
 		<form method="post"  action="/iReserve/rooms/SearchRoom">
 			<span>Date: </span>
-			<input type="date" value="date" name="date"/>
+			<input type="date" value="2016-01-01" name="date"/>
 			<span>Batiments: </span>
 			<select name="batiment" id="batiments">
 				<c:forEach items="${Batiments}" var="entry">
@@ -23,22 +24,25 @@
 				</c:forEach>
 			</select>
 			<span>Sites: </span>
-			<select name="sites" onchange="updateBatiments()" id="sites">
+			<select name="site" onchange="updateBatiments()" id="sites">
 				<c:forEach items="${Sites}" var="site">
 					<option>${site}</option>
 				</c:forEach>
 			</select>
 			<span>Capacité: </span>
-			<input type="text" value= "capacite" name="capa" id="capa"/>
+			<select name="capa">
+				<c:forEach items="${Capacities}" var="entry">
+					<option>${entry}</option>
+				</c:forEach>
+			</select>
 			<br/>
 			<span>Fonctionnalités: </span>
-			<input type="radio"  name="particularite-secu" onclick="update()"/>securite
-			<input type="radio"  name="particularite-visio"/>visio
-			<input type="radio"  name="particularite-digilab"/>digilab
-			<input type="radio"  name="particularite-tableau"/>tableau<br>
+			<input type="checkbox"  value="true" name="particularite-secu"/>securite
+			<input type="checkbox"  value="true" name="particularite-visio"/>visio
+			<input type="checkbox"  value="true" name="particularite-digilab"/>digilab
+			<input type="checkbox"  value="true" name="particularite-tableau"/>tableau<br>
 			<input type="submit" value="rechercher" name="rechercher"/>
 		</form>
-		<article><p id="p"></p></article>
 	</section>
 	<%=HTMLHelper.BACKBUTTON %>
 </body>
@@ -59,18 +63,4 @@
 			var batL = document.getElementById("batiments");
 	 		batL.options[batL.options.length] = new Option(element, element);
 		}
-		function update()
-		{
-			if(document.getElementById("updateSecu").checked==false)
-			{
-				document.getElementById("updateSecu").checked=true;
-				document.getElementById("updateSecu").value = "true";
-			}
-			else
-			{
-				document.getElementById("updateSecu").checked=false;
-				document.getElementById("updateSecu").value = null;
-			}
-		}
-		
 </script>
