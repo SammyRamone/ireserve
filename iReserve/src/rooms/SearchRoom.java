@@ -166,7 +166,7 @@ public class SearchRoom extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		doGet(request, response);
+		this.getServletContext().getRequestDispatcher( "/iFrame/bookRoom.html" ).forward( request, response );
 	}
 
 }

@@ -123,7 +123,7 @@ public class BookRoom extends HttpServlet {
 		}
 		querry = "INSERT INTO Reservations (id_room, id_person, object, date, start, end) VALUES (" + id_room + ", " + id_person + ", \"" + object + "\", \"" + date + "\", \"" + start + "\", \"" + end + "\");";
 		sqlhelp.execute(querry);
-		response.sendRedirect("http://localhost:8080/iReserve/rooms/SearchRoom");
+		doGet(request, response);
 	}
 
 }
