@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import marc_playground.*;
+import helper.HTMLHelper;
 import helper.SQLHelper;
 import marc_playground.DataBaseAccess;
 
@@ -49,7 +50,7 @@ public class AddRoomServlet extends HttpServlet {
 		String querry = "INSERT INTO Rooms (id_batiment, num_room, capacity) VALUES (" + id_batiment + "," + number + "," + size + ");";
 		SQLHelper.getInstance().execute(querry);
 
-		response.getWriter().append("Room Added");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Room Added" + HTMLHelper.BACKBUTTON + "</body></html>");
  
 	}
 

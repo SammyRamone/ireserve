@@ -50,7 +50,7 @@ public class ChangeUserServlet extends HttpServlet {
 			boolean isAdmin = resultat.getBoolean("isAdmin");
 			String location = resultat.getString("location");
 
-			String form1 = "<html><head></head><body>" + "<form action=\"ChangeUserDataServlet\" method=\"post\"> "
+			String form1 = "<html><head>" + HTMLHelper.CSS + "</head><body>" + "<form action=\"ChangeUserDataServlet\" method=\"post\"> "
 					+ "User ID: <input type=\"text\" size=\"5\" name=\"id\" value=\"" + id + "\"/>"
 					+ "Username: <input type=\"text\" size=\"5\" name=\"username\" value=\"" + username + "\"/>"
 					+ "Password: <input type=\"text\" size=\"5\" name=\"password\" value=\"" + password + "\"/>";
@@ -69,7 +69,7 @@ public class ChangeUserServlet extends HttpServlet {
 			
 			String option = HTMLHelper.makeOption(sites, "location", site);
 			String form2 = "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Change User\" />" + "</form>"
-					+ "</body></html>";
+					+ HTMLHelper.BACKBUTTON + "</body></html>";
 
 			String re = form1 + checkbox + option +  form2;
 			response.getWriter().append(re);

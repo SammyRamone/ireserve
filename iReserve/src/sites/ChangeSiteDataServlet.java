@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.HTMLHelper;
 import helper.SQLHelper;
 
 /**
@@ -41,7 +42,7 @@ public class ChangeSiteDataServlet extends HttpServlet {
 		
 		String update= "UPDATE Sites SET name=\"" + name + "\" WHERE id_site=" + id + ";";
 		SQLHelper.getInstance().execute(update);
-		response.getWriter().append("Site Changed");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Site Changed" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.HTMLHelper;
 import helper.SQLHelper;
 
 /**
@@ -47,7 +48,7 @@ public class AddBatimentServlet extends HttpServlet {
 
 		String add = "INSERT INTO Batiments (nom, id_site) VALUES (\"" + name + "\", " + id_site + ");";
 		SQLHelper.getInstance().execute(add);
-		response.getWriter().append("Batiment Added");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Batiment Added" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
 }

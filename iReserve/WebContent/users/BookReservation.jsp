@@ -1,9 +1,10 @@
+<%@page import="helper.HTMLHelper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
 	<meta charset="UTF-8"/>
-	<link rel="stylesheet" href="" />
+	<%=HTMLHelper.CSS %>
 </head>
 <body>
 	<section>
@@ -19,5 +20,6 @@
 			<input type="submit" value="book" name="book"/>
 		</form>
 	</section>
+	<%=HTMLHelper.BACKBUTTON %>
 
 </body>

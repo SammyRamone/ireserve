@@ -23,5 +23,6 @@
         &nbsp;&nbsp;
         <input type="submit" value="Add Room" />
     </form>
+    <%=HTMLHelper.BACKBUTTON %>
 </body>
 </html>
