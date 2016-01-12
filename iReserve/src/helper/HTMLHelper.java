@@ -2,7 +2,7 @@ package helper;
 
 public class HTMLHelper {
 
-	public static String BACKBUTTON = "<FORM><INPUT Type=\"button\" VALUE=\"Back\" onClick=\"history.go(-1);return true;\"></FORM>";
+	public static String BACKBUTTON = "<FORM><INPUT Type=\"submit\" VALUE=\"Back\" onClick=\"history.go(-1);return true;\"></FORM>";
 	public static String CSS = "<head><link rel=\"stylesheet\" href=\"../main/iStyle.css\"></head>";
 			
 	public static String makeTable(String[] names, String[][] data, int rows) {
