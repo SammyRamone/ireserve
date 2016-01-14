@@ -1,3 +1,4 @@
+<%@page import="helper.HTMLHelper"%>
 <%@page import="rooms.ListRoomsServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,5 +11,6 @@
 </head>
 <body>
 <%=ListRoomsServlet.getRoomTable() %>
+<%=HTMLHelper.BACKBUTTON %>
 </body>
 </html>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.HTMLHelper;
 import helper.SQLHelper;
 
 /**
@@ -53,7 +54,7 @@ public class ChangeUserDataServlet extends HttpServlet {
 		
 		String update= "UPDATE Persons SET username=\"" + username + "\", password=\"" + password + "\", isAdmin=" + isAdmin + ", location=" + siteID + " WHERE id_person=" + id + ";";
 		SQLHelper.getInstance().execute(update);
-		response.getWriter().append("User Changed");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> User changed" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
 }

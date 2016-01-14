@@ -51,7 +51,7 @@ public class ChangeBatimentServlet extends HttpServlet {
 			String name = resultat.getString("nom");
 			String id_site = resultat.getString("id_site");
 
-			String form1 = "<html><head></head><body>" + "<form action=\"ChangeBatimentDataServlet\" method=\"post\"> "
+			String form1 = "<html><head>" + HTMLHelper.CSS + "</head><body>" + "<form action=\"ChangeBatimentDataServlet\" method=\"post\"> "
 					+ "Batiment ID: <input type=\"text\" size=\"5\" name=\"id\" value=\"" + id + "\"/>"
 					+ "Name: <input type=\"text\" size=\"5\" name=\"name\" value=\"" + name + "\"/>";
 			
@@ -64,13 +64,13 @@ public class ChangeBatimentServlet extends HttpServlet {
 			
 			String option = HTMLHelper.makeOption(sites, "site", site);
 			String form2 = "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Change Batiment\" />" + "</form>"
-					+ "</body></html>";
+					+ HTMLHelper.BACKBUTTON + "</body></html>";
 
 			String re = form1 + option +  form2;
 			response.getWriter().append(re);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			response.getWriter().append("Number not found");
+			response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Number not found" + HTMLHelper.BACKBUTTON + "</body></html>");
 		}
 	}
 

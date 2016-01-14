@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.HTMLHelper;
 import helper.SQLHelper;
 
 /**
@@ -43,7 +44,7 @@ public class RemoveUserServlet extends HttpServlet {
 			String command = "DELETE FROM Persons WHERE id_person=" + idsArr[i].trim() + ";";
 			SQLHelper.getInstance().execute(command);
 		}
-		response.getWriter().append("User deleted");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> User delted" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
 }

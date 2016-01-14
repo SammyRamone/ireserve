@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.HTMLHelper;
 import helper.SQLHelper;
 
 /**
@@ -43,7 +44,7 @@ public class RemoveReservationServlet extends HttpServlet {
 			String command = "DELETE FROM Reservations WHERE id_reservation=" + idsArr[i].trim() + ";";
 			SQLHelper.getInstance().execute(command);
 		}
-		response.getWriter().append("Reservation deleted");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Reservation delted" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
 }

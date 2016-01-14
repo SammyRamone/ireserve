@@ -1,11 +1,20 @@
 package rooms;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
+import helper.SQLHelper;
 
 /**
  * Servlet implementation class BookRoom
@@ -26,7 +35,51 @@ public class BookRoom extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		ArrayList<String> sites = new ArrayList<String>();
+		ArrayList<String> persons = new ArrayList<String>();
+		HashMap<String, Object[]> batiments = new HashMap<String, Object[]>();
+		SQLHelper sqlhelp = SQLHelper.getInstance();
+		String querry = "SELECT * FROM Sites;";
+		ResultSet a = sqlhelp.doQuerry(querry);
+		try {
+			while(a.next())
+			{
+				String site = a.getString("name");
+				ArrayList<String> bats = new ArrayList<String>();
+				querry = "SELECT Batiments.nom FROM Sites, Batiments WHERE (Sites.name=\"" + site + "\" and Sites.id_site=Batiments.id_site);";
+				ResultSet b = sqlhelp.doQuerry(querry);
+				while(b.next())
+				{
+					bats.add(b.getString("nom"));
+				}
+				sites.add(site);
+				batiments.put(site, bats.toArray());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Gson gson = new Gson();
+		String gmap = gson.toJson(batiments);
+		
+		querry = "SELECT Persons.username FROM Persons;";
+		a = sqlhelp.doQuerry(querry);
+		
+		try {
+			while(a.next())
+			{
+				String p = a.getString("username");
+				persons.add(p);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("Batiments", batiments); //batiment init
+		request.setAttribute("GBatiments", gmap); //batiment pour changer
+		request.setAttribute("Sites", sites.toArray());
+		request.setAttribute("Persons", persons.toArray());
 		this.getServletContext().getRequestDispatcher( "/users/BookReservation.jsp" ).forward( request, response );
 	}
 
@@ -34,7 +87,42 @@ public class BookRoom extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		SQLHelper sqlhelp = SQLHelper.getInstance();
+		String date = request.getParameter("date");
+		String start = request.getParameter("start");
+		String end = request.getParameter("end");
+		String bat = request.getParameter("batiment");
+		String site = request.getParameter("site");
+		String room = request.getParameter("room");
+		String personne = request.getParameter("personne");
+		String object = request.getParameter("object");
+		String id_room="";
+		String id_person="";
+		String querry = "SELECT Rooms.id_room FROM Rooms, Batiments, Sites WHERE (Sites.name = \"" + site + "\" and Sites.id_site=Batiments.id_site and Batiments.nom= \"" + bat + "\" and Rooms.id_batiment=Batiments.id_batiment and Rooms.num_room=" + room + ");";
+		ResultSet a = sqlhelp.doQuerry(querry);
+		try {
+			while(a.next())
+			{
+				id_room = a.getString("id_room");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		querry = "SELECT Persons.id_person FROM Persons, Sites WHERE (Persons.username=\"" + personne + "\" and Sites.name=\"" + site + "\" and Persons.location=Sites.id_site);";
+		a = sqlhelp.doQuerry(querry);
+		try {
+			while(a.next())
+			{
+				id_person = a.getString("id_person");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		querry = "INSERT INTO Reservations (id_room, id_person, object, date, start, end) VALUES (" + id_room + ", " + id_person + ", \"" + object + "\", \"" + date + "\", \"" + start + "\", \"" + end + "\");";
+		sqlhelp.execute(querry);
 		doGet(request, response);
 	}
 

@@ -34,7 +34,7 @@ public class ManageUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("<html><head></head><body>");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body>");
 		String querry = "SELECT * FROM Persons";
 		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
 
@@ -75,7 +75,7 @@ public class ManageUserServlet extends HttpServlet {
 				+ "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Change User\" />" + "</form>";
 		response.getWriter().append(form);
 		response.getWriter().append(form2);
-		response.getWriter().append("</body></html>");
+		response.getWriter().append(HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
 	/**

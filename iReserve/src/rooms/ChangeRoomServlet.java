@@ -53,19 +53,20 @@ public class ChangeRoomServlet extends HttpServlet {
 			String capacity = resultat.getString("capacity");
 			String idBatiment = resultat.getString("id_batiment");
 
-			querry = "SELECT * FROM Batiments WHERE id_site=" + idBatiment;
+			querry = "SELECT * FROM Batiments WHERE id_batiment=" + idBatiment;
+			System.out.println(querry);
 			resultat = SQLHelper.getInstance().doQuerry(querry);
 			resultat.next();
 			String batiment = resultat.getString("name");
 
-			String form1 = "<html><head></head><body>" + "<form action=\"ChangeRoomDataServlet\" method=\"post\"> "
+			String form1 = "<html><head>" + HTMLHelper.CSS + "</head><body>" + "<form action=\"ChangeRoomDataServlet\" method=\"post\"> "
 					+ "Room ID: <input type=\"text\" size=\"5\" name=\"id\" value=\"" + id + "\"/>"
 					+ "Room Number: <input type=\"text\" size=\"5\" name=\"number\" value=\"" + number + "\"/>"
 					+ "Room Capacity: <input type=\"text\" size=\"5\" name=\"capacity\" value=\"" + capacity + "\"/>";
 			String [] batiments = SQLHelper.getInstance().getAllBatiments();
 			String option = HTMLHelper.makeOption(batiments, "batiment", batiment);
 			String form2 = "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Change Room\" />" + "</form>"
-					+ "</body></html>";
+					+ HTMLHelper.BACKBUTTON + "</body></html>";
 
 			String re = form1 + option +  form2;
 			response.getWriter().append(re);
