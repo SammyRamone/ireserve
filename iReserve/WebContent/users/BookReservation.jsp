@@ -37,14 +37,16 @@
 			<span>Au nom de: </span>
 			<input type="text" name="personne"/>
 			<span>Objet: </span>
-			<input type="text" name="object"/>
+			<input type="text" name="object" id="obj"/>
+			<br/>
 			<span>Participants: </span>
-			<select name="participant" id="participant">
+			<select name="participants" id="participants" size = "10" multiple>
 				<c:forEach items="${Persons}" var="entry">
 					<option>${entry}</option>
 				</c:forEach>
 			</select>
 			<input type="submit" value="book" name="book"/>
+			
 		</form>
 	</section>
 	<%=HTMLHelper.BACKBUTTON %>
@@ -52,6 +54,7 @@
 </body>
 
 <script>
+		var i = 0;
 		function updateBatiments()
 		{
 			var siteL = document.getElementById("sites");
