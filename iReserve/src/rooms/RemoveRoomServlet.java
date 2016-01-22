@@ -40,17 +40,17 @@ public class RemoveRoomServlet extends HttpServlet {
 			ResultSet resultat;
 			String querry;
 			// drop down
-			String site = request.getParameter("sites");
+			String batiment = request.getParameter("batiment");
 			response.getWriter().append("<html><body><form action=\"RemoveRoomServlet\" method=\"get\">");
-			String[] sites = SQLHelper.getInstance().getAllSites(true);
-			response.getWriter().append(HTMLHelper.makeOption(sites, "sites", site));
+			String[] batiments = SQLHelper.getInstance().getAllBatiments(true);
+			response.getWriter().append(HTMLHelper.makeOption(batiments, "batiment", batiment));
 			response.getWriter().append("<input type=\"submit\" value=\"Filter\"/></form>");
 			
 			// table
 			
-			if (site != null && !site.equals("All")) {
-				String id = SQLHelper.getInstance().getSiteID(site);
-				querry = "SELECT * FROM Rooms WHERE id_site=\"" + id + "\";";
+			if (batiment != null && !batiment.equals("All")) {
+				String id = SQLHelper.getInstance().getBatimentID(batiment);
+				querry = "SELECT * FROM Rooms WHERE id_batiment=\"" + id + "\";";
 			} else {
 				querry = "SELECT * FROM Rooms;";
 			}
@@ -58,7 +58,7 @@ public class RemoveRoomServlet extends HttpServlet {
 			String[] names = new String[3];
 			names[0] = "Number";
 			names[1] = "Capacity";
-			names[2] = "Site";
+			names[2] = "Batiment";
 
 			int rows = 0;
 			while (resultat.next()) {
@@ -70,11 +70,11 @@ public class RemoveRoomServlet extends HttpServlet {
 				String[] row = new String[3];
 				row[0] = resultat.getString("num_room");
 				row[1] = resultat.getString("capacity");
-				row[2] = resultat.getString("id_site");
+				row[2] = SQLHelper.getInstance().getBatimentName(resultat.getString("id_batiment"));
 				data[i] = row;
 			}
-			if(site== null){
-				site = "All";
+			if(batiment== null){
+				batiment = "All";
 			}
 			response.getWriter().append(HTMLHelper.makeTable(names, data, rows));
 		} catch (SQLException e) {
