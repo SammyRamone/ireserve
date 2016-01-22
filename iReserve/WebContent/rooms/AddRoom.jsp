@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../main/iStyle.css">
 <title>iReserve - Add Room</title>
 </head>
 <body>
@@ -22,5 +23,6 @@
         &nbsp;&nbsp;
         <input type="submit" value="Add Room" />
     </form>
+    <%=HTMLHelper.BACKBUTTON %>
 </body>
 </html>

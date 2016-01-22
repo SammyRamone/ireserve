@@ -41,7 +41,7 @@ public class RemoveRoomServlet extends HttpServlet {
 			String querry;
 			// drop down
 			String batiment = request.getParameter("batiment");
-			response.getWriter().append("<html><body><form action=\"RemoveRoomServlet\" method=\"get\">");
+			response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body><form action=\"RemoveRoomServlet\" method=\"get\">");
 			String[] batiments = SQLHelper.getInstance().getAllBatiments(true);
 			response.getWriter().append(HTMLHelper.makeOption(batiments, "batiment", batiment));
 			response.getWriter().append("<input type=\"submit\" value=\"Filter\"/></form>");
@@ -92,7 +92,7 @@ public class RemoveRoomServlet extends HttpServlet {
 				+ "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Change Room\" />" + "</form>";
 		response.getWriter().append(form);
 		response.getWriter().append(form2);
-		response.getWriter().append("</body></html>");
+		response.getWriter().append(HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
 	/**
@@ -108,6 +108,8 @@ public class RemoveRoomServlet extends HttpServlet {
 			String command = "DELETE FROM Rooms WHERE num_room=" + numbersArr[i].trim() + ";";
 			SQLHelper.getInstance().execute(command);
 		}
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Rooms delted" + HTMLHelper.BACKBUTTON + "</body></html>");
+		
 
 	}
 }

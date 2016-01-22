@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.HTMLHelper;
 import helper.SQLHelper;
  
 /**
@@ -44,7 +45,7 @@ public class ChangeRoomDataServlet extends HttpServlet {
 		
 		String update= "UPDATE Rooms SET id_site=" + siteID + ", num_room=" + number + ", capacity=" + capacity + " WHERE id_room=" + id + ";";
 		SQLHelper.getInstance().execute(update);
-		response.getWriter().append("Room Changed");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Room removed" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
 }

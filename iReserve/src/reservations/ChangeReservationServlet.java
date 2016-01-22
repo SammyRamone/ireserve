@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.HTMLHelper;
 import helper.SQLHelper;
 
 /**
@@ -55,7 +56,7 @@ public class ChangeReservationServlet extends HttpServlet {
 			Time start = resultat.getTime("start");
 			Time end = resultat.getTime("end");
 
-			String form1 = "<html><head></head><body>" + "<form action=\"ChangeReservationDataServlet\" method=\"post\"> "
+			String form1 = "<html><head>" + HTMLHelper.CSS + "</head><body>" + "<form action=\"ChangeReservationDataServlet\" method=\"post\"> "
 					+ "Reservation ID: <input type=\"text\" size=\"5\" name=\"id\" value=\"" + id + "\"/>"
 					+ "Room: <input type=\"text\" size=\"5\" name=\"id_room\" value=\"" + room + "\"/>"
 					+ "User: <input type=\"text\" size=\"5\" name=\"id_person\" value=\"" + user + "\"/>"
@@ -65,7 +66,7 @@ public class ChangeReservationServlet extends HttpServlet {
 					+ "End: <input type=\"time\" name=\"end\" value=\"" + end + "\">";
 			
 			String form2 = "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Change Reservation\" />" + "</form>"
-					+ "</body></html>";
+					+ HTMLHelper.BACKBUTTON + "</body></html>";
 
 			String re = form1 +  form2;
 			response.getWriter().append(re);

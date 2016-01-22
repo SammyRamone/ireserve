@@ -33,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String form1 = "<html><head></head><body>" + "<form action=\"RegisterServlet\" method=\"post\"> "
+		String form1 = "<html><head>" + HTMLHelper.CSS + "</head><body>" + "<form action=\"RegisterServlet\" method=\"post\"> "
 				+ "Username: <input type=\"text\" size=\"5\" name=\"username\"/>"
 				+ "Password: <input type=\"text\" size=\"5\" name=\"password\"/>"
 				+ "isAdmin: <input type=\"CHECKBOX\" size=\"5\" name=\"isAdmin\"/>";
@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
 		String option = HTMLHelper.makeOption(sites, "location");
 
 		String form2 = "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Add User\" />" + "</form>"
-				+ "</body></html>";
+				+ HTMLHelper.BACKBUTTON + "</body></html>";
 		response.getWriter().append(form1 + option + form2);
 	}
 
@@ -67,7 +67,6 @@ public class RegisterServlet extends HttpServlet {
 		
 		String querry = "INSERT INTO Persons (username, password, isAdmin, location) VALUES (\"" + username + "\", \"" + password + "\", " + isAdmin + ", " + siteID + ");";
 		SQLHelper.getInstance().execute(querry);
-		response.getWriter().append("User added");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> User Added" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
-
 }

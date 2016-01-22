@@ -34,7 +34,7 @@ public class ReservationManagmentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("<html><head></head><body>");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body>");
 		String querry = "SELECT * FROM Reservations";
 		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
 
@@ -92,7 +92,7 @@ public class ReservationManagmentServlet extends HttpServlet {
 				+ "<input type=\"submit\" value=\"Add Reservation\" />" + "</form>";
 
 		response.getWriter().append(form + form2 + form3 + option + option2 + form4);
-		response.getWriter().append("</body></html>");
+		response.getWriter().append(HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
 	/**

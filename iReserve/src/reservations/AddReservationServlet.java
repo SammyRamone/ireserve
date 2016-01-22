@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.HTMLHelper;
 import helper.SQLHelper;
 
 /**
@@ -48,7 +49,7 @@ public class AddReservationServlet extends HttpServlet {
 
 		String add = "INSERT INTO Reservations (id_room, id_person, object, date, start, end) VALUES (" + id_room + "," + id_person + ",\"" + object + "\",\"" + date + "\",\"" + start + "\",\"" + end + "\");";
 		SQLHelper.getInstance().execute(add);
-		response.getWriter().append("Reservation Added");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Reservation Added" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
 }

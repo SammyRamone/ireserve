@@ -37,32 +37,6 @@ public class ListRoomsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String querry = "SELECT * FROM Rooms;";
-		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
-		String[] names = new String[3];
-		names[0] = "Number";
-		names[1] = "Capacity";
-		names[2] = "Batiment";
-		try {
-			int rows = 0;
-			while(resultat.next()){
-				rows++;
-			}
-			resultat.beforeFirst();
-			System.out.print("rows: " + rows );
-			String[][] data = new String[rows][3];
-			for (int i = 0; resultat.next(); i++) {				
-				String[] row = new String[3];
-				row[0] = resultat.getString("num_room");
-				row[1] = resultat.getString("capacity");
-				row[2]  = SQLHelper.getInstance().getBatimentName(resultat.getString("id_batiment")); 
-				data[i] = row;
-			}
-			response.getWriter().append(HTMLHelper.makeTable(names, data, rows));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
 	}
 
 	/**
@@ -73,6 +47,39 @@ public class ListRoomsServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	public static String getRoomTable(){
+		//String querry = "SELECT Sites.name, Rooms.num_room, Rooms.capacity, Batiments.nom FROM Rooms, Sites, Batiments WHERE Rooms.id_batiment=Batiments.id_batiment AND Batiments.id_site=Sites.id_site;";
+		String querry = "SELECT * FROM Rooms;";
+		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
+		String[] names = new String[4];
+		names[0] = "Number";
+		names[1] = "Capacity";
+		names[2] = "Batiment";
+		names[3] = "Site";
+		try {
+			int rows = 0;
+			while(resultat.next()){
+				rows++;
+			}
+			resultat.beforeFirst();
+			System.out.print("rows: " + rows );
+			String[][] data = new String[rows][4];
+			for (int i = 0; resultat.next(); i++) {				
+				String[] row = new String[4];
+				row[0] = resultat.getString("num_room");
+				row[1] = resultat.getString("capacity");
+				row[2]  = SQLHelper.getInstance().getBatimentName(resultat.getString("id_batiment")); 
+				row[3] = SQLHelper.getInstance().getSitebyBatiment(resultat.getString("id_batiment")); 
+				data[i] = row;
+			}
+			return HTMLHelper.makeTable(names, data, rows);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
 	}
 	
 }

@@ -34,7 +34,7 @@ public class ManageBatimentsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("<html><head></head><body>");
+		response.getWriter().append("<html><head>" + HTMLHelper.CSS +"</head><body>");
 		String querry = "SELECT * FROM Batiments";
 		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
 
@@ -76,7 +76,7 @@ public class ManageBatimentsServlet extends HttpServlet {
 		String option = HTMLHelper.makeOption(sites, "site");
 		String form4 = "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Add Batiment\" />" + "</form>";
 		response.getWriter().append(form + form2 + form3 + option + form4);
-		response.getWriter().append("</body></html>");
+		response.getWriter().append(HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
 	/**

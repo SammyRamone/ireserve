@@ -48,11 +48,11 @@ public class ChangeSiteServlet extends HttpServlet {
 			resultat.next();
 			String name = resultat.getString("name");
 
-			String form1 = "<html><head></head><body>" + "<form action=\"ChangeSiteDataServlet\" method=\"post\"> "
+			String form1 = "<html><head>" + HTMLHelper.CSS +"</head><body>" + "<form action=\"ChangeSiteDataServlet\" method=\"post\"> "
 					+ "Site ID: <input type=\"text\" size=\"5\" name=\"id\" value=\"" + id + "\"/>"
 					+ "Name: <input type=\"text\" size=\"5\" name=\"name\" value=\"" + name + "\"/>";			
 			String form2 = "&nbsp;&nbsp;" + "<input type=\"submit\" value=\"Change Site\" />" + "</form>"
-					+ "</body></html>";
+					+ HTMLHelper.BACKBUTTON + "</body></html>";
 
 			String re = form1 + form2;
 			response.getWriter().append(re);
