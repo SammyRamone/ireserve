@@ -1,4 +1,4 @@
-package rooms;
+package Rooms;
 
 public class ResultSRQuerry {
 
