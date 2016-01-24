@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class ChangeSiteDataServlet
@@ -39,9 +40,7 @@ public class ChangeSiteDataServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");		
-		
-		String update= "UPDATE Sites SET name=\"" + name + "\" WHERE id_site=" + id + ";";
-		SQLHelper.getInstance().execute(update);
+		SQLHelper.getInstance().ChangeSiteDataQuerry(name, id);
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Site Changed" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 

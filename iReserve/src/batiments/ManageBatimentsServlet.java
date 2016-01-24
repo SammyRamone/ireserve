@@ -35,8 +35,7 @@ public class ManageBatimentsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS +"</head><body>");
-		String querry = "SELECT * FROM Batiments";
-		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
+		ResultSet resultat = SQLHelper.getInstance().getAllBatimentQuerry();
 
 		String[] names = new String[3];
 		names[0] = "ID";

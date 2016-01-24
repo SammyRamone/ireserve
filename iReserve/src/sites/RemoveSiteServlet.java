@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class RemoveSiteServlet
@@ -41,8 +42,7 @@ public class RemoveSiteServlet extends HttpServlet {
 		String[] idsArr = ids.split(",");
 		for (int i = 0; i < idsArr.length; i++) {
 			System.out.print(idsArr[i]);
-			String command = "DELETE FROM Sites WHERE id_site=" + idsArr[i].trim() + ";";
-			SQLHelper.getInstance().execute(command);
+			SQLHelper.getInstance().removeSiteQuerry(idsArr[i].trim());
 		}
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Site delted" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}

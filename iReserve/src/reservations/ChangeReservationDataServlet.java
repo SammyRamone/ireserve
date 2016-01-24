@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class ChangeReservationDataServlet
@@ -50,8 +51,7 @@ public class ChangeReservationDataServlet extends HttpServlet {
 		String start = request.getParameter("start");
 		String end = request.getParameter("end");
 		
-		String update= "UPDATE Reservations SET id_room=\"" + idRoom + "\", id_person=\"" + idUser + "\", object=\"" + object + "\", date='" + date + "', start='" + start + "', end='" + end + "' WHERE id_reservation=" + idReservation + ";";
-		SQLHelper.getInstance().execute(update);
+		SQLHelper.getInstance().ChangeReservationQuerry(idRoom,idUser,object,date,start,end,idReservation);
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Reservation changed" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 

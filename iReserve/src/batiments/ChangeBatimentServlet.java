@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class ChangeBatimentServlet
@@ -44,8 +45,7 @@ public class ChangeBatimentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		System.out.println(id);
-		String querry = "SELECT * FROM Batiments WHERE id_batiment=" + id + ";";
-		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
+		ResultSet resultat = SQLHelper.getInstance().getBatimentByIdQuerry( id);
 		try {
 			resultat.next();
 			String name = resultat.getString("nom");
@@ -57,8 +57,7 @@ public class ChangeBatimentServlet extends HttpServlet {
 			
 			String [] sites = SQLHelper.getInstance().getAllSites(false);
 			
-			querry = "SELECT * FROM Sites WHERE id_site=" + id_site;
-			resultat = SQLHelper.getInstance().doQuerry(querry);
+			resultat = SQLHelper.getInstance().getSiteByIdQuerry( id_site);
 			resultat.next();
 			String site = resultat.getString("name");
 			

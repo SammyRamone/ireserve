@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class AddSiteServlet
@@ -39,8 +40,7 @@ public class AddSiteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name= request.getParameter("name");
 		
-		String add= "INSERT INTO Sites (name) VALUES (\"" + name + "\");";
-		SQLHelper.getInstance().execute(add);
+		SQLHelper.getInstance().addSiteQuerry( name);
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Site Added" + HTMLHelper.BACKBUTTON + "</body></html>");
 		
 	}

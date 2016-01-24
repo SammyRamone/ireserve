@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
  
 /**
  * Servlet implementation class ChangeRoomDataServlet
@@ -41,10 +42,8 @@ public class ChangeRoomDataServlet extends HttpServlet {
 		String number = request.getParameter("number");
 		String capacity = request.getParameter("capacity");
 		String site = request.getParameter("sites");
-		String siteID = SQLHelper.getInstance().getSiteID(site);
-		
-		String update= "UPDATE Rooms SET id_site=" + siteID + ", num_room=" + number + ", capacity=" + capacity + " WHERE id_room=" + id + ";";
-		SQLHelper.getInstance().execute(update);
+	
+		SQLHelper.getInstance().ChangeRoomDataQuerry(site,number,capacity,id);
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Room removed" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 

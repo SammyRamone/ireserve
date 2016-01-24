@@ -57,16 +57,8 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		String passFromDB = null;
-		String querry = "SELECT * FROM Persons WHERE username='" + login + "';";
-		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
-		try {
-			resultat.next();
-			passFromDB = resultat.getString("password");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String passFromDB = SQLHelper.getInstance().getPasswordByloginQuerry(login);
+		
 
 		if (passFromDB != null && passFromDB.equals(pass)) {
 			boolean admin = false;

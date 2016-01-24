@@ -36,7 +36,7 @@ public class ReservationManagmentServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body>");
 		String querry = "SELECT * FROM Reservations";
-		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
+		ResultSet resultat = SQLHelper.getInstance().getAllReservationQuerry();
 
 		String[] names = new String[7];
 		names[0] = "ID Rervation";

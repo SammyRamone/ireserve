@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class ChangeRoomServlet
@@ -45,17 +46,14 @@ public class ChangeRoomServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String number = request.getParameter("number");
-		String querry = "SELECT * FROM Rooms WHERE num_room=" + number + ";";
-		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
+		ResultSet resultat = SQLHelper.getInstance().allRoomwithNumberQuerry(number);
 		try {
 			resultat.next();
 			String id = resultat.getString("id_room");
 			String capacity = resultat.getString("capacity");
 			String idBatiment = resultat.getString("id_batiment");
 
-			querry = "SELECT * FROM Batiments WHERE id_batiment=" + idBatiment;
-			System.out.println(querry);
-			resultat = SQLHelper.getInstance().doQuerry(querry);
+			resultat = SQLHelper.getInstance().allBatByIDQuerry(idBatiment);
 			resultat.next();
 			String batiment = resultat.getString("name");
 

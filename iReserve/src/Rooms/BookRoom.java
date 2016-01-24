@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class BookRoom
@@ -40,17 +41,17 @@ public class BookRoom extends HttpServlet {
 		HashMap<String, Object[]> batiments = new HashMap<String, Object[]>();
 		SQLHelper sqlhelp = SQLHelper.getInstance();
 		String querry = "SELECT * FROM Sites;";
-		ResultSet a = sqlhelp.doQuerry(querry);
+		ResultSet allsites = sqlhelp.getAllSiteQuerry();
 		try {
-			while(a.next())
+			while(allsites.next())
 			{
-				String site = a.getString("name");
+				String site = allsites.getString("name");
 				ArrayList<String> bats = new ArrayList<String>();
 				querry = "SELECT Batiments.nom FROM Sites, Batiments WHERE (Sites.name=\"" + site + "\" and Sites.id_site=Batiments.id_site);";
-				ResultSet b = sqlhelp.doQuerry(querry);
-				while(b.next())
+				ResultSet batFromSite = sqlhelp.getAllBatimentFromSite(site);
+				while(batFromSite.next())
 				{
-					bats.add(b.getString("nom"));
+					bats.add(batFromSite.getString("nom"));
 				}
 				sites.add(site);
 				batiments.put(site, bats.toArray());
@@ -61,9 +62,7 @@ public class BookRoom extends HttpServlet {
 		}
 		Gson gson = new Gson();
 		String gmap = gson.toJson(batiments);
-		
-		querry = "SELECT Persons.username FROM Persons;";
-		a = sqlhelp.doQuerry(querry);
+		ResultSet a = sqlhelp.getAllPersonneByUsernameQuerry();
 		
 		try {
 			while(a.next())
@@ -99,7 +98,7 @@ public class BookRoom extends HttpServlet {
 		String id_room="";
 		String id_person="";
 		String querry = "SELECT Rooms.id_room FROM Rooms, Batiments, Sites WHERE (Sites.name = \"" + site + "\" and Sites.id_site=Batiments.id_site and Batiments.nom= \"" + bat + "\" and Rooms.id_batiment=Batiments.id_batiment and Rooms.num_room=" + room + ");";
-		ResultSet a = sqlhelp.doQuerry(querry);
+		ResultSet a = sqlhelp.getRoomsQuerry(site, bat, room);
 		try {
 			while(a.next())
 			{
@@ -110,8 +109,7 @@ public class BookRoom extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		querry = "SELECT Persons.id_person FROM Persons, Sites WHERE (Persons.username=\"" + personne + "\" and Sites.name=\"" + site + "\" and Persons.location=Sites.id_site);";
-		a = sqlhelp.doQuerry(querry);
+		a = sqlhelp.getPersonneQuerry( site,personne);
 		try {
 			while(a.next())
 			{
@@ -121,8 +119,7 @@ public class BookRoom extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		querry = "INSERT INTO Reservations (id_room, id_person, object, date, start, end) VALUES (" + id_room + ", " + id_person + ", \"" + object + "\", \"" + date + "\", \"" + start + "\", \"" + end + "\");";
-		sqlhelp.execute(querry);
+		sqlhelp.BookReservationQuerry(id_room, id_person, object, date, start, end);
 		doGet(request, response);
 	}
 

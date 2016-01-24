@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class RemoveRoomServlet
@@ -49,12 +50,11 @@ public class RemoveRoomServlet extends HttpServlet {
 			// table
 			
 			if (batiment != null && !batiment.equals("All")) {
-				String id = SQLHelper.getInstance().getBatimentID(batiment);
-				querry = "SELECT * FROM Rooms WHERE id_batiment=\"" + id + "\";";
+				resultat = SQLHelper.getInstance().getallRoomByBatIdQuerry( batiment);
 			} else {
-				querry = "SELECT * FROM Rooms;";
+				resultat = SQLHelper.getInstance().getAllRooms();
 			}
-			resultat = SQLHelper.getInstance().doQuerry(querry);
+			
 			String[] names = new String[3];
 			names[0] = "Number";
 			names[1] = "Capacity";
@@ -105,8 +105,7 @@ public class RemoveRoomServlet extends HttpServlet {
 		String[] numbersArr = numbers.split(",");
 		for (int i = 0; i < numbersArr.length; i++) {
 			System.out.print(numbersArr[i]);
-			String command = "DELETE FROM Rooms WHERE num_room=" + numbersArr[i].trim() + ";";
-			SQLHelper.getInstance().execute(command);
+			SQLHelper.getInstance().removeRoomsQuerry(numbersArr[i].trim());
 		}
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Rooms delted" + HTMLHelper.BACKBUTTON + "</body></html>");
 		

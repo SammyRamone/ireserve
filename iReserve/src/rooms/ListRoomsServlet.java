@@ -51,8 +51,7 @@ public class ListRoomsServlet extends HttpServlet {
 	
 	public static String getRoomTable(){
 		//String querry = "SELECT Sites.name, Rooms.num_room, Rooms.capacity, Batiments.nom FROM Rooms, Sites, Batiments WHERE Rooms.id_batiment=Batiments.id_batiment AND Batiments.id_site=Sites.id_site;";
-		String querry = "SELECT * FROM Rooms;";
-		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
+		ResultSet resultat = SQLHelper.getInstance().getAllRooms();
 		String[] names = new String[4];
 		names[0] = "Number";
 		names[1] = "Capacity";

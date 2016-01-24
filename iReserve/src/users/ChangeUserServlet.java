@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class ChangeUserServlet
@@ -61,9 +62,7 @@ public class ChangeUserServlet extends HttpServlet {
 				checkbox = "isAdmin: <input type=\"CHECKBOX\" size=\"5\" name=\"isAdmin\"/>";
 			}
 			String [] sites = SQLHelper.getInstance().getAllSites(false);
-			
-			querry = "SELECT * FROM Sites WHERE id_site=" + location;
-			resultat = SQLHelper.getInstance().doQuerry(querry);
+			resultat = SQLHelper.getInstance().getSiteByIdQuerry(location);
 			resultat.next();
 			String site = resultat.getString("name");
 			
