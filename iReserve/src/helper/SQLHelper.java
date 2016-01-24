@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import batiments.String;
 
-public class SQLHelper {
+public class SQLHelper implements SQLaccess {
 
 	private static SQLHelper _instance;
 	private String _url;
