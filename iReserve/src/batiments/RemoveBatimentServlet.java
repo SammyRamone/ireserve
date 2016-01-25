@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class RemoveBatimentServlet
@@ -41,8 +42,7 @@ public class RemoveBatimentServlet extends HttpServlet {
 			String[] idsArr = ids.split(",");
 			for (int i = 0; i < idsArr.length; i++) {
 				System.out.print(idsArr[i]);
-				String command = "DELETE FROM Batiments WHERE id_batiment=" + idsArr[i].trim() + ";";
-				SQLHelper.getInstance().execute(command);
+				SQLHelper.getInstance().RemoveBatimentQuerry(idsArr[i].trim());
 			}
 			response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Batiment delted" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}

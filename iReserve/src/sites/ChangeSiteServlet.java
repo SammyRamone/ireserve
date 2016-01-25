@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class ChangeSiteServlet
@@ -42,8 +43,7 @@ public class ChangeSiteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		System.out.println(id);
-		String querry = "SELECT * FROM Sites WHERE id_site=" + id + ";";
-		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
+		ResultSet resultat = SQLHelper.getInstance().getSiteByIdQuerry( id);
 		try {
 			resultat.next();
 			String name = resultat.getString("name");

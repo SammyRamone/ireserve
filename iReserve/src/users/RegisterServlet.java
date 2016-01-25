@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -55,7 +56,7 @@ public class RegisterServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String location = request.getParameter("location");
-		String siteID = SQLHelper.getInstance().getSiteID(location);
+		
 		
 		String isAdmin;
 		String active = request.getParameter("isAdmin");
@@ -64,9 +65,7 @@ public class RegisterServlet extends HttpServlet {
 		} else{
 			isAdmin = "false";
 		}
-		
-		String querry = "INSERT INTO Persons (username, password, isAdmin, location) VALUES (\"" + username + "\", \"" + password + "\", " + isAdmin + ", " + siteID + ");";
-		SQLHelper.getInstance().execute(querry);
+		SQLHelper.getInstance().registerQuerry(username,password,isAdmin,location);
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> User Added" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 }

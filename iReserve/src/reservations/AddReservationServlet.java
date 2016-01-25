@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class AddReservationServlet
@@ -48,7 +49,7 @@ public class AddReservationServlet extends HttpServlet {
 		String id_person = SQLHelper.getInstance().getUserID(person);
 
 		String add = "INSERT INTO Reservations (id_room, id_person, object, date, start, end) VALUES (" + id_room + "," + id_person + ",\"" + object + "\",\"" + date + "\",\"" + start + "\",\"" + end + "\");";
-		SQLHelper.getInstance().execute(add);
+		SQLHelper.getInstance().AddReservationQuerry(id_room ,id_person,object,date,start,end);
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> Reservation Added" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 

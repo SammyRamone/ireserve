@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class ChangeReservationServlet
@@ -43,8 +44,7 @@ public class ChangeReservationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		String querry = "SELECT * FROM Reservations WHERE id_reservation=" + id + ";";
-		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
+		ResultSet resultat = SQLHelper.getInstance().getReservationByID(id);
 		try {
 			resultat.next();
 			String idRoom = resultat.getString("id_room");

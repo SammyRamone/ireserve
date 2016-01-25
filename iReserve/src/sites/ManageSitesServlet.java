@@ -33,8 +33,7 @@ public class ManageSitesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body>");
-		String querry = "SELECT * FROM Sites";
-		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
+		ResultSet resultat = SQLHelper.getInstance().getAllSiteQuerry();
 
 		String[] names = new String[2];
 		names[0] = "ID";

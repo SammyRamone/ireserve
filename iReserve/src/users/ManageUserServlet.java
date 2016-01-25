@@ -35,8 +35,8 @@ public class ManageUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body>");
-		String querry = "SELECT * FROM Persons";
-		ResultSet resultat = SQLHelper.getInstance().doQuerry(querry);
+		
+		ResultSet resultat = SQLHelper.getInstance(). getAllPersonneQuerry();
 
 		String[] names = new String[5];
 		names[0] = "ID";

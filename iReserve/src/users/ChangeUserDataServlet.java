@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
+import helper.String;
 
 /**
  * Servlet implementation class ChangeUserDataServlet
@@ -41,7 +42,7 @@ public class ChangeUserDataServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String location = request.getParameter("location");
-		String siteID = SQLHelper.getInstance().getSiteID(location);
+		
 		
 		String isAdmin;
 		String active = request.getParameter("isAdmin");
@@ -51,9 +52,7 @@ public class ChangeUserDataServlet extends HttpServlet {
 			isAdmin = "false";
 		}
 		
-		
-		String update= "UPDATE Persons SET username=\"" + username + "\", password=\"" + password + "\", isAdmin=" + isAdmin + ", location=" + siteID + " WHERE id_person=" + id + ";";
-		SQLHelper.getInstance().execute(update);
+		SQLHelper.getInstance().changeUserDataQuerry( location,username,password,isAdmin,id);
 		response.getWriter().append("<html><head>" + HTMLHelper.CSS + "</head><body> User changed" + HTMLHelper.BACKBUTTON + "</body></html>");
 	}
 
