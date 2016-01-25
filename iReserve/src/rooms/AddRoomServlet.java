@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import marc_playground.*;
 import helper.HTMLHelper;
 import helper.SQLHelper;
-import helper.String;
 import marc_playground.DataBaseAccess;
 
 

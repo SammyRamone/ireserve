@@ -1,12 +1,8 @@
 package helper;
 
+import java.sql.ResultSet;
+
 public interface SQLaccess {
-	
-
-	
-
-		public static SQLaccess getInstance();
-
 		
 
 		public ResultSet doQuerry(String querry);
@@ -23,8 +19,6 @@ public interface SQLaccess {
 		
 		public String[] getAllBatiments();
 		
-		private String firstResult(String querry, String column);
-
 		public String getSiteID(String siteName);
 
 		public String getSiteName(String id_site);
@@ -66,7 +60,6 @@ public interface SQLaccess {
 		public void ChangeRoomDataQuerry(String site, String number, String capacity, String id);
 		public ResultSet allRoomwithNumberQuerry(String number);
 		public ResultSet allBatByIDQuerry(String idBatiment);
-		public ResultSet getAllRooms();
 		public ResultSet getallRoomByBatIdQuerry(String batiment);
 		public void removeRoomsQuerry(String numb);
 		public ResultSet getRoomByCapacity();
@@ -80,6 +73,10 @@ public interface SQLaccess {
 		public ResultSet getAllPersonneQuerry();
 		public void registerQuerry(String username, String password, String isAdmin, String location);
 		public void removeUserQuerry(String id);
+
+		public boolean isUserAdmin(String username);
+		
+		public ResultSet getAllRoomsSet();
 	}
 
 

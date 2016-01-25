@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import helper.SQLHelper;
-import helper.String;
 
 /**
  * Servlet implementation class BookRoom

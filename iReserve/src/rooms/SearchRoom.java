@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import Rooms.ResultSRQuerry;
 import helper.SQLHelper;
-import helper.String;
 
 /**
  * Servlet implementation class SearchRoom
@@ -141,13 +140,14 @@ public class SearchRoom extends HttpServlet {
 		
 		SQLHelper sqlhelp = SQLHelper.getInstance();
 		String querry = "";
+		ResultSet a;
 		if(havingCount==0)
 		{
-			ResultSet a = sqlhelp.getAvailableRoomWithoutParticularitiesQuerry(capa,batiment,date,site,havingCount);
+			a = sqlhelp.getAvailableRoomWithoutParticularitiesQuerry(capa,batiment,date,site,havingCount);
 		}
 		else
 		{
-			ResultSet a = sqlhelp.getAvailableRoomWithParticularitiesQuerry(capa,batiment,particularities,date ,site, havingCount);
+			a = sqlhelp.getAvailableRoomWithParticularitiesQuerry(capa,batiment,particularities,date ,site, havingCount);
 		}
 		ArrayList<ResultSRQuerry> result = new ArrayList<ResultSRQuerry>();
 		

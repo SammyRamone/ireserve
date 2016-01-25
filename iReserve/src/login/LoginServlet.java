@@ -61,13 +61,7 @@ public class LoginServlet extends HttpServlet {
 		
 
 		if (passFromDB != null && passFromDB.equals(pass)) {
-			boolean admin = false;
-			try {
-				admin = resultat.getBoolean("isAdmin");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			boolean admin = SQLHelper.getInstance().isUserAdmin(login);
 			if(admin){
 				response.sendRedirect("../main/iReserveAdmin.html");
 			}else{

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
-import helper.String;
 
 /**
  * Servlet implementation class RegisterServlet

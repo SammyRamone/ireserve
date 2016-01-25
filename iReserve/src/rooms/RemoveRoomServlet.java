@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.HTMLHelper;
 import helper.SQLHelper;
-import helper.String;
 
 /**
  * Servlet implementation class RemoveRoomServlet
@@ -52,7 +51,7 @@ public class RemoveRoomServlet extends HttpServlet {
 			if (batiment != null && !batiment.equals("All")) {
 				resultat = SQLHelper.getInstance().getallRoomByBatIdQuerry( batiment);
 			} else {
-				resultat = SQLHelper.getInstance().getAllRooms();
+				resultat = SQLHelper.getInstance().getAllRoomsSet();
 			}
 			
 			String[] names = new String[3];
