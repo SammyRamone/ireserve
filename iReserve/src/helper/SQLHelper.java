@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import batiments.String;
-
 public class SQLHelper implements SQLaccess {
 
 	private static SQLHelper _instance;
@@ -28,7 +26,7 @@ public class SQLHelper implements SQLaccess {
 		/* Connexion à la base de données */
 		_url = "jdbc:mysql://localhost:3306/bdd_sopra";
 		_utilisateur = "root";
-		_motDePasse = "mamaya";
+		_motDePasse = "root";
 		_connexion = null;
 	}
 
@@ -261,7 +259,7 @@ public class SQLHelper implements SQLaccess {
 		return resultat; 
 	}
 	public ResultSet getSiteByIdQuerry(String id_site){
-		querry = "SELECT * FROM Sites WHERE id_site=" + id_site;
+		String querry = "SELECT * FROM Sites WHERE id_site=" + id_site;
 		ResultSet resultat = this.doQuerry(querry);
 		return resultat; 
 	}
@@ -271,7 +269,7 @@ public class SQLHelper implements SQLaccess {
 		return resultat; 
 	}
 	public ResultSet getAllBatimentFromSite(String site){
-		querry = "SELECT Batiments.nom FROM Sites, Batiments WHERE (Sites.name=\"" + site + "\" and Sites.id_site=Batiments.id_site);";
+		String querry = "SELECT Batiments.nom FROM Sites, Batiments WHERE (Sites.name=\"" + site + "\" and Sites.id_site=Batiments.id_site);";
 		ResultSet resultat = this.doQuerry(querry);
 		return resultat; 
 	}
@@ -292,13 +290,28 @@ public class SQLHelper implements SQLaccess {
 		}
 		return passFromDB; 
 	}
+	
+	public boolean isUserAdmin(String username){
+		boolean isAdmin = false;
+		String  querry = "SELECT * FROM Persons WHERE username='" + username + "';";
+		ResultSet resultat = this.doQuerry(querry);
+		try {
+			resultat.next();
+			isAdmin = resultat.getBoolean("isAdmin");			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return isAdmin;
+	}
+	
 	public ResultSet getAllPersonneByUsernameQuerry(){
-		querry = "SELECT Persons.username FROM Persons;";
+		String querry = "SELECT Persons.username FROM Persons;";
 		ResultSet resultat = this.doQuerry(querry);
 		return resultat; 
 	}
 	public ResultSet getPersonneQuerry(String site, String personne){
-		querry = "SELECT Persons.id_person FROM Persons, Sites WHERE (Persons.username=\"" + personne + "\" and Sites.name=\"" + site + "\" and Persons.location=Sites.id_site);";
+		String querry = "SELECT Persons.id_person FROM Persons, Sites WHERE (Persons.username=\"" + personne + "\" and Sites.name=\"" + site + "\" and Persons.location=Sites.id_site);";
 		return this.doQuerry(querry);
 	}
 	public ResultSet getRoomsQuerry(String site, String bat, String room){
@@ -352,11 +365,6 @@ public class SQLHelper implements SQLaccess {
 		ResultSet resultat = this.doQuerry(querry);
 		return resultat; 
 	}
-	public ResultSet getAllRooms(){
-		String querry = "SELECT * FROM Rooms;";
-		ResultSet resultat = this.doQuerry(querry);
-		return resultat; 
-	}
 	public ResultSet getallRoomByBatIdQuerry(String batiment){
 		String id = this.getBatimentID(batiment);
 		String querry = "SELECT * FROM Rooms WHERE id_batiment=\"" + id + "\";";
@@ -378,7 +386,7 @@ public class SQLHelper implements SQLaccess {
 	
 	public ResultSet getAvailableRoomWithParticularitiesQuerry(String capa, String batiment,String particularities, String date , String site,int havingCount){
 		String querry = "SELECT Rooms.num_room,Reservations.start, Reservations.end FROM Sites, Rooms, Reservations, Batiments where (Batiments.nom=\"" + batiment + "\" and Sites.name=\"" +site + "\" and Reservations.date=\"" + date + "\" and Sites.id_site=Batiments.id_site and Rooms.capacity>=" + capa + " and Rooms.id_batiment=Batiments.id_batiment and Rooms.id_room=Reservations.id_room and Rooms.id_room IN (SELECT Rooms.id_room FROM Rooms, Particularities, Own where ((" + particularities + ")  and Own.id_room = Rooms.id_room and Own.id_part=Particularities.id_part) GROUP BY Rooms.id_room HAVING COUNT(Rooms.id_room)>= " + havingCount + "));";
-		ResultSet reultat = this.doQuerry(querry);
+		ResultSet resultat = this.doQuerry(querry);
 		return resultat;
 	}
 	public void addSiteQuerry(String name){
@@ -411,5 +419,11 @@ public class SQLHelper implements SQLaccess {
 	public void removeUserQuerry(String id){
 		String command = "DELETE FROM Persons WHERE id_person=" + id + ";";
 		this.execute(command);
+	}
+	
+	public ResultSet getAllRoomsSet(){
+		String querry = "SELECT * FROM Rooms;";
+		ResultSet resultat = this.doQuerry(querry);
+		return resultat; 
 	}
 }
